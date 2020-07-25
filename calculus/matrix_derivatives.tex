@@ -1,0 +1,205 @@
+\input ../macros.tex
+
+\beginsection Matrix Calculus
+
+\item{A.}\emph{Multivariable Calculus}
+\itemitem{1.} Scope: multi-valued functions of multiple variables\medskip
+
+\itemitem{}\vbox{\offinterlineskip
+% ===== Preamble =====
+\halign{
+\vrule                % Vertical line
+height2.75ex          % Add extra whitespace on top of rows
+depth1.25ex           % Add extra whitespace at bottom of rows
+width0.6pt#&          % Make the line a little thicker compared to normal
+\enskip #\hfil\enskip\vrule&                       % Column 1
+\enskip\hfil #\hfil\enskip\vrule&                  % Column 2
+\enskip\hfil #\hfil\enskip\vrule&                  % Column 3
+\enskip\hfil #\hfil\enskip&#\vrule width 0.6pt\cr  % Column 4
+\noalign{\hrule height 0.6pt}
+% ===== Row 1 =====
+&&\bf Scalar&\bf Vector&\bf Matrix&\crl
+% ===== Row 2 =====
+&\bf Dependent var&$y\in\R$&${\bf y}\in\R^m$&$Y\in\R^{m\times n}$&\crl
+% ===== Row 3 =====
+&\bf Independent var&$x\in\R$&${\bf x}\in\R^n$&$X\in\R^{p\times q}$&\cr
+\noalign{\hrule height 0.6pt}
+}}
+
+\itemitem{2.} Notations
+\itemitemitem{(a)}\emph{Matrix calculus} collects the partial derivatives
+${\partial y_i\over\partial x_j}$ into a matrix; two variants:\smallskip
+
+\itemitemitem{}\vbox{\offinterlineskip
+% ===== Preamble =====
+\halign{
+\vrule                % Vertical line
+height2.75ex          % Add extra whitespace on top of rows
+depth1.25ex           % Add extra whitespace at bottom of rows
+width0.6pt#&          % Make the line a little thicker compared to normal
+\enskip #\hfil\enskip\vrule&                       % Column 1
+\enskip\hfil #\hfil\enskip\vrule&                  % Column 2
+\enskip\hfil #\hfil\enskip&#\vrule width 0.6pt\cr  % Column 3
+\noalign{\hrule height 0.6pt}
+% ===== Row 1 =====
+&&\low{2}{\bf Indep var}&\low{2}{\bf Dep var}&\cr
+&&\up{2}{\bf Components}&\up{2}{\bf Components}&\crl
+% ===== Row 2 =====
+&\low{2}{\bf Numerator layout}&\low{9}{Columns}&\low{9}{Rows}&\cr
+\omit&\omit&\omit&\cr
+&\up{2}{\bf /Jacobian formulation}&&&\crl
+% ===== Row 3 =====
+&\low{2}{\bf Denominator layout}&\low{9}{Rows}&\low{9}{Columns}&\cr
+\omit&\omit&\omit&\cr
+&\up{2}{\bf /Hessian formulation}&&&\cr
+\noalign{\hrule height 0.6pt}
+}}
+
+\itemitemitem{(b)} Physics favors \emph{tensor index notation} (Ricci calculus or
+Einstein summation)\smallskip
+% ; two variants:
+% \itemitemitemitem{II.} Einstein summation
+\item{B.}\emph{Matrix derivatives} (using numerator layout)\footnote{${}^1$}{
+Tables copied from the Wikipedia article on ``Matrix calculus''.}
+\itemitem{1.}Scalar- or vector-values variables\medskip
+
+\itemitem{}\vbox{\offinterlineskip
+% ===== Preamble =====
+\halign{
+\vrule                % Vertical line
+height2.75ex          % Add extra whitespace on top of rows
+depth1.25ex           % Add extra whitespace at bottom of rows
+width0.6pt#&          % Make the line a little thicker compared to normal
+\enskip\hfil #\hfil\enskip\vrule&                  % Column 1
+\enskip\hfil #\hfil\enskip\vrule&                  % Column 2
+\enskip\hfil #\hfil\enskip\vrule&                  % Column 3
+\enskip\hfil #\hfil\enskip\vrule&                  % Column 4
+\enskip\hfil #\hfil\enskip\vrule&                  % Column 5
+\enskip\hfil #\hfil\enskip\vrule&                  % Column 6
+\enskip\hfil #\hfil\enskip\vrule&                  % Column 7
+\enskip\hfil #\hfil\enskip&#\vrule width 0.6pt\cr  % Column 8
+\noalign{\hrule height 0.6pt}
+% ===== Row 1 =====
+&\multirow{2}{}&
+\multirow{3}{\bf Scalar $y$ ($1\times 1$)}&
+\multirow{3}{\bf Vector y ($m\times 1$)}&\cr
+\omit&\omit&\omit&\omit\hrulefill&\omit\hrulefill&\omit\hrulefill&\omit\hrulefill&
+\omit\hrulefill&\omit\hrulefill&\cr
+% ===== Row 2 =====
+&\multispan2\hfil\vrule&\bf Notation&
+\bf Dim&
+\bf Name&
+\bf Notation&
+\bf Dim&
+\bf Name&\crl
+% ===== Row 3 =====
+&\low{2}{\bf Scalar $x$}&
+{\bf Num}&
+\low{17}{$\frac{\partial y}{\partial x}=\frac{dy}{dx}$}&
+\low{9}{$1\times 1$}&
+\low{2}{Scalar}&
+\low{17}{$\frac{\partial{\bf y}}{\partial x}$}&
+$m\times 1$&
+\low{2}{Tangent}&\cr
+\omit&\omit&\omit\hrulefill&\omit&\omit&\omit&\omit&\omit\hrulefill&\omit&\cr
+% ===== Row 4 =====
+&\up{2}{($1\times 1$)}&
+{\bf Denom}&&&
+\up{2}{Derivative}&&
+$1\times m$&
+\up{2}{Vector}&\cr
+\noalign{\hrule height 0.6pt}
+% ===== Row 5 =====
+&\low{2}{\bf Vector x}&
+{\bf Num}&
+\low{17}{$\frac{\partial y}{\partial\bf x}=\nabla y$}&
+$1\times n$&
+\low{2}{Gradient}&
+\low{17}{$\frac{\partial\bf y}{\partial\bf x}=J$}&
+$1\times n$&
+\low{9}{Jacobian}&\cr
+\omit&\omit&\omit\hrulefill&\omit&\omit\hrulefill&\omit&\omit&\omit\hrulefill&\omit&\cr
+% ===== Row 6 =====
+&\up{2}{($n\times 1$)}&
+{\bf Denom}&&
+$n\times 1$&
+\up{2}{Vector}&&
+$n\times m$&&\cr
+\noalign{\hrule height 0.6pt}
+}}
+
+\itemitemitem{(a)}\emph{Tangent vector} ${\partial{\bf y}\over\partial x}=
+\left[{\partial y_1\over\partial x}\enskip\cdots\enskip{\partial y_m\over\partial x}
+\right]^T\in\R^{m\times 1}$ 
+\itemitemitem{(b)}\emph{Gradient vector} $\nabla y={\partial y\over\partial{\bf x}}
+=\left[{\partial y\over\partial x_1}\enskip\cdots\enskip{\partial y\over\partial x_n}
+\right]\in\R^{1\times n}$ 
+\itemitemitem{(c)}\emph{Jacobian} $J={\partial{\bf y}\over\partial{\bf x}}=
+\left({\partial y_i\over\partial x_j}\right)_{ij}\in\R^{m\times n}$ 
+
+\itemitem{2.} Scalar- and matrix-valued variables\medskip
+
+\itemitem{}\vbox{\offinterlineskip
+% ===== Preamble =====
+\halign{
+\vrule                % Vertical line
+height2.75ex          % Add extra whitespace on top of rows
+depth1.25ex           % Add extra whitespace at bottom of rows
+width0.6pt#&          % Make the line a little thicker compared to normal
+\enskip\hfil #\hfil\enskip\vrule&                  % Column 1
+\enskip\hfil #\hfil\enskip\vrule&                  % Column 2
+\enskip\hfil #\hfil\enskip\vrule&                  % Column 3
+\enskip\hfil #\hfil\enskip\vrule&                  % Column 4
+\enskip\hfil #\hfil\enskip\vrule&                  % Column 5
+\enskip\hfil #\hfil\enskip\vrule&                  % Column 6
+\enskip\hfil #\hfil\enskip\vrule&                  % Column 7
+\enskip\hfil #\hfil\enskip&#\vrule width 0.6pt\cr  % Column 8
+\noalign{\hrule height 0.6pt}
+% ===== Row 1 =====
+&\multirow{2}{}&
+\multirow{3}{\bf Scalar $y$ ($1\times 1$)}&
+\multirow{3}{{\bf Matrix} $Y$ ($m\times n$)}&\cr
+\omit&\omit&\omit&\omit\hrulefill&\omit\hrulefill&\omit\hrulefill&\omit\hrulefill&
+\omit\hrulefill&\omit\hrulefill&\cr
+% ===== Row 2 =====
+&\multispan2\hfil\vrule&\bf Notation&
+\bf Dim&
+\bf Name&
+\bf Notation&
+\bf Dim&
+\bf Name&\crl
+% ===== Row 3 =====
+&\low{2}{\bf Scalar $x$}&
+{\bf Num}&&&&
+\low{17}{$\frac{\partial Y}{\partial x}$}&
+$m\times n$&
+\low{2}{Tangent}&\cr
+\omit&\omit&\omit\hrulefill&\omit&\omit&\omit&\omit&\omit\hrulefill&\omit&\cr
+% ===== Row 4 =====
+&\up{2}{($1\times 1$)}&
+{\bf Denom}&&&&&
+$n\times m$&
+\up{2}{Matrix}&\cr
+\noalign{\hrule height 0.6pt}
+% ===== Row 5 =====
+&\low{2}{{\bf Matrix} $X$}&
+{\bf Num}&
+\low{17}{$\frac{\partial y}{\partial X}$}&
+$q\times p$&
+\low{2}{Gradient}&&&&\cr
+\omit&\omit&\omit\hrulefill&\omit&\omit\hrulefill&\omit&\omit&\omit&\omit&\cr
+% ===== Row 6 =====
+&\up{2}{($p\times q$)}&
+{\bf Denom}&&
+$p\times q$&
+\up{2}{Matrix}&&&&\cr
+\noalign{\hrule height 0.6pt}
+}}
+
+\smallskip\itemitemitem{(a)}\emph{Tangent matrix} ${\partial Y\over\partial x}=
+\left({\partial y_{ij}\over\partial x}\right)_{ij}\in\R^{m\times n}$
+
+\itemitemitem{(b)}\emph{Gradient matrix} ${\partial y\over\partial X}=
+\left({\partial x_{ij}\over\partial y}\right)_{ji}\in\R^{q\times p}$
+
+\bye

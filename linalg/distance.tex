@@ -1,0 +1,97 @@
+\input ../macros.tex
+
+\def\dist#1#2{{\rm dist}(#1,#2)}
+\def\rms#1{{\rm rms}(#1)}
+\def\std#1{{\rm std}(#1)}
+\def\avg#1{{\rm avg}(#1)}
+
+\beginsection Distance and correlation
+
+\item{A.}\emph{Euclidean distance} $\dist{a}{b}$ between $a,b\in\R^m$: $\|a-b\|=
+\sqrt{\sum_{i=1}^m(a_i-b_i)^2}$\smallskip
+\itemitem{1.}\emph{Properties}:
+\itemitemitem{(a)}\emph{Non-negativity}: $\dist{a}{b}\geq 0$\smallskip
+\itemitemitem{(b)}\emph{Identity of indiscernables}: $\dist{a}{b}\leftrightarrow
+a=b$\smallskip
+\itemitemitem{(c)}\emph{Symmetry}: $\dist{a}{b}=\dist{b}{a}$\smallskip
+\itemitemitem{(d)}\emph{Triangle inequality/sub-additivity}: $\dist{a}{c}\leq
+\dist{a}{b}+\dist{b}{c}$\smallskip
+\itemitem{2.}\emph{Root mean square (RMS) deviation} $\rms{a-b}$ between
+$a,b\in\R^m$: $\|a-b\|/\sqrt{m}$\smallskip
+\itemitem{3.}\emph{Examples}:
+\itemitemitem{(a)}\emph{Feature distance}: If $a,b$ are feature vectors,
+then the feature distance $\dist{a}{b}$ measures their dissimilarity.\smallskip
+\itemitemitem{(b)}\emph{Document dissimilarity}: If $a,b$ are histograms of word
+occurrences for two documents, then $\dist{a}{b}$ is called the document
+dissimilarity.\smallskip
+\itemitemitem{(c)}\emph{RMS prediction error}: When $y,\widehat{y}$ are
+measurements and their predictions, then $r=y-\widehat{y}$ is the
+residual/prediction error, and $\rms{y-\widehat{y}}$ the RMS prediction error.
+\itemitem{4.}For measuring dissimilarity, $\dist{a}{b}$ implicitly
+assumes all $a_i$ (and $b_i$) have similar magnitude, as when, e.g., they are
+expressed in the same units.\smallskip
+
+\item{B.}\emph{Mean} and \emph{standard deviation} $\mu_x=\avg{x},\sigma_x=
+\std{x}\in\R$ of $x\in\R^m$ as $(1/m)^Tx$, ${\rm rms}(x-\mu_x1)$\smallskip
+\itemitem{1.}\emph{Properties}:\smallskip
+\itemitemitem{(a)}$\mu_{\alpha x}=\alpha\mu_x$ and $\sigma_{\alpha x}=|\alpha|
+\sigma_x$\smallskip
+\itemitemitem{(b)}$\mu_{x+\alpha 1}=\mu_x+\alpha$ (implying $\mu_{x-\mu_x1}=0$)
+and $\sigma_{x+\alpha 1}=\sigma_x$\smallskip
+\itemitem{2.}$\mu_x^2+\sigma_x^2=\mu_x^2+{1\over m}(\|x\|^2-2x^T(\mu_x1)+
+\|\mu_x1\|^2)=2\mu_x^2+{\|x\|^2\over m}-2\mu_x{x^T1\over m}={\rm rms}(x)^2$
+\smallskip
+\itemitem{3.}\emph{Standardization} $z_i={x_i-\mu_x\over\sigma_x}$ of
+$x\in\R^m$, indicating how many std's $x_i$ lies above $\mu_x$\smallskip
+\itemitemitem{(a)}$\mu_z={1\over\sigma_x}\avg{x-\mu_x1}=0$ (by B1c)\smallskip
+\itemitemitem{(b)}$\sigma_z={1\over\sigma_x}\std{x-\mu_x1}=1$ (by B1a,b)
+\smallskip
+
+\item{C.}\emph{Correlation coefficient} $\rho_{a,b}$ of $a,b\in\R^m$,
+measuring how the entries $a,b$ vary together\smallskip
+\itemitem{1.}\emph{Definition}, for $\widetilde{a}=a-\mu_a1$, $\widetilde{b}=
+b-\mu_b1$: ${\widetilde{a}^T\widetilde{b}\over\|\widetilde{a}\|
+\|\widetilde{b}\|}=\cos\angle(\widetilde{a},\widetilde{b})={\sum_{i=1}^m(a_i-
+\mu_a)(b_i-\mu_b)\over\sqrt{\sum_{i=1}^m(a_i-\mu_a)^2}\sqrt{\sum_{i=1}^m
+(b_i-\mu_b)^2}}$\smallskip
+\itemitemitem{(a)} Defined iff $\sigma_a\not=0$ and $\sigma_b\not=0$ (else no
+variation), noting
+$\sigma_a=0\leftrightarrow\|\widetilde{a}\|=0\leftrightarrow\widetilde{a}=0
+\leftrightarrow a=\mu_a1$\smallskip
+\itemitem{2.}\emph{Extreme values}: uncorrelated ($0$) or perfect positive- or
+negative correlation ($1$ resp. $-1$)\smallskip
+\itemitem{}\vbox{\offinterlineskip
+% ===== Preamble =====
+\halign{
+\vrule                % Vertical line
+height2.75ex          % Add extra whitespace on top of rows
+depth1.25ex           % Add extra whitespace at bottom of rows
+width0.6pt#&          % Make the line a little thicker compared to normal
+\enskip #\hfil\enskip\vrule&                  % Column 1
+\enskip #\hfil\enskip\vrule&                  % Column 2
+\enskip #\hfil\enskip&#\vrule width 0.6pt\cr  % Column 3
+\noalign{\hrule height 0.6pt}
+% ===== Header =====
+&$-1\leq\rho\leq 1$&$\Theta$ (rad)&description&\crl
+% ===== Rows =====
+&$-1$&$\pi$&perfect negative correlation&\cr
+&$0$&$\pi/2$&uncorrelated&\cr
+&$1$&$0$&perfect positive correlation&\cr
+\noalign{\hrule height 0.6pt}
+}}\smallskip
+\itemitem{3.} $\rho_{a,b}$ re-expressed in terms of \emph{standardization}:
+${1\over m}\sum_{k=1}^m\left({a_i-\mu_a\over\sigma_a}\right)
+\left({b_i-\mu_b\over\sigma_b}\right)={\widetilde{a}^T\widetilde{b}\over
+m\sigma_a\sigma_b}$\smallskip
+
+\item{D.}\emph{Covariance matrix} $\Sigma\in\R^{n\times n}$ for 
+$A\in\R^{m\times n}$: $(\widetilde{A}^T\widetilde{A})/m$, where $\widetilde{a}_j
+=a_j-\mu_{a_j}1$\smallskip
+\itemitem{1.}$\Sigma(i,j)={1\over m}\sum_{k=1}^m(a_{ki}-\mu_{a_i})(a_{kj}-
+\mu_{a_j})$\smallskip
+\itemitem{2.}$\Sigma(i,j)=\sigma_{a_i}\sigma_{a_j}\rho_{a_i,a_j}$ if
+$\sigma_{a_i},\sigma_{a_j}\not=0$\smallskip
+\itemitemitem{(a)}In particular, $\Sigma(i,i)=\sigma_{a_i}^2$\smallskip
+\itemitemitem{(b)}$\bigwedge_{i\not=j}a_i,a_j$ uncorrelated $\leftrightarrow$
+$\Sigma=\rm{diag}(\sigma_{a_1}^2,\ldots,\sigma_{a_n}^2)$
+\bye
