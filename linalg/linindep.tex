@@ -1,0 +1,70 @@
+\beginsection Linear Independence and Orthonormal Bases
+
+\item{A.} Linear (in)dependence
+\iitem{1.} $a_1,\ldots,a_n\in\R^m$ are \emph{linearly dependent} iff
+$(\exists\beta\in\R^n)\left(\sum_{j=1}^n\beta_ja_j=0\land\beta\not=0\right)$
+\smallskip
+\iiitem{(a)} If $\beta_j\not=0$, $a_j$ is a linear combination
+$-{1\over\beta_j}\sum_{k\not =j}\beta_ka_k$\smallskip
+\iiitem{(b)} Conversely, if $a_j=\sum_{k\not=j}\gamma_ka_k$, then $a_1,
+\ldots,a_n$ are linearly dependent\smallskip
+\iitem{2.} $a_1,\ldots,a_n$ are \emph{linearly independent} iff $(\forall
+\beta\in\R^n)\left(\sum_{j=1}^n\beta_ja_j=0\rightarrow
+\beta=0\right)$\smallskip
+\iiitem{(a)} iff $(\forall x\in\R^m)(\forall\beta,\gamma\in\R^n)\left(
+\sum_{j=1}^n\beta_ja_j=\sum_{j=1}^n\gamma_ja_j=x\rightarrow\beta=\gamma\right)$
+\smallskip
+\iiitem{}($\Rightarrow$) $\sum_{j=1}^n(\beta_j-\gamma_j)a_j=0$, so $\beta-
+\gamma=0$; and ($\Leftarrow$) as $\sum_{j=1}^n0a_j=0$\smallskip
+\iitem{3.}\emph{Examples}:\smallskip
+\iiitem{(a)} $\emptyset\subseteq\R^m$ is linearly independent\smallskip
+\iiitem{(b)} $a\in\R^m$ is linearly dependent iff $a=0$\smallskip
+\iiitem{(c)} $a,b\in\R^m$ are linearly dependent iff collinear\smallskip
+\iiitem{(d)} If $A\subseteq\R^m$ are linearly dependent, so are any $B\subseteq
+\R^m$ s.t. $A\subset B$\smallskip
+\iiitem{(e)} If $A\subseteq\R^m$ are linearly independent, so are any $B
+\subseteq\R^m$ s.t. $B\subset A$\smallskip
+\iiitem{(f)} The \emph{standard unit vectors} $e_1,\ldots,e_m\in\R^m$ are
+linearly independent\smallskip
+
+\item{B.}Basis\smallskip
+\iitem{1.}\emph{Independence-dimension inequality} (w/h proof)\smallskip
+\iiitem{(a)}$a_1,\ldots,a_n\in\R^m$ are linearly independent only if $n\leq m$
+\smallskip
+\iiitem{(b)}$a_1,\ldots,a_n\in\R^m$ are linearly dependent if $n>m$\smallskip
+\iitem{2.}\emph{Basis}: any linearly independent $a_1,\ldots,a_m\in\R^m$
+\smallskip
+\iitem{3.}$\forall$ basis $a_1,\ldots,a_m\in\R^m$, $\forall b\in\R^m$,
+$\exists!$ \emph{expansion} $b=\sum_{i=1}^m\alpha_ia_i$ of $b$ in $a_1,\ldots,
+a_m$\smallskip
+\iiitem{(a)} (A2a) implies uniqueness\smallskip
+\iiitem{(b)} $a_1,\ldots,a_m,b$ is linearly dependent, so $(\exists\beta\in
+\R^{m+1})\left(\beta\not=0\land\sum_{i=1}^m\beta_ia_i+\beta_{m+1}b=0\right)$
+\smallskip
+\iiitem{(c)} $\beta_{m+1}\not=0$ as else $\sum_{i=1}^m\beta_ia_i=0\land\beta(:m)
+\not=0$ $\bot$\smallskip
+\iiitem{(d)} $b=-{1\over\beta_{m+1}}\sum_{i=1}^m\beta_ia_i$\smallskip
+\iitem{4.}\emph{Example}: $b=\sum_{j=1}^mb_je_j$ is the unique expansion of
+$b\in\R^m$ in the basis $e_1,\ldots,e_m\in\R^m$\smallskip
+
+\item{C.}\emph{Orthonormal vectors}\smallskip
+\iitem{1.}$a_1,\ldots,a_n\in\R^m$ are \emph{(mutually) orthogonal} iff
+$\bigwedge_{1\leq i\not=j\leq n}a_i\bot a_j$\smallskip
+\iitem{2.}$a_1,\ldots,a_n\in\R^m$ are \emph{orthonormal} iff orthogonal and
+$\bigwedge_{1\leq j\leq n}\|a_j\|=1$\smallskip
+\iiitem{(a)}iff $\bigwedge_{1\leq i,j\leq n}\left(a_i^Ta_j=1{\rm\ if}\ i=j\
+{\rm else}\ 0\right)$\smallskip
+\iiitem{(b)}e.g., $e_1,\ldots,e_m$ are orthonormal\smallskip
+\iitem{3.}$b\in\R^m$ is a linear combination of orthonormal $a_1,\ldots,a_n\in
+\R^m$ iff $b=\sum_{j=1}^n(a_j^Tb)a_j$\smallskip
+\iiitem{($\Rightarrow$)} $b=\sum_{j=1}^n\beta_ja_j\rightarrow\bigwedge_{1\leq i
+\leq n}a_i^Tb=a_i^T\sum_{j=1}^n\beta_ja_j=\sum_{j=1}^n\beta_j(a_i^Ta_j)=\beta_i$
+\smallskip
+\iitem{4.}Any orthonormal $a_1,\ldots,a_n\in\R^m$ are linearly independent (by
+3)\smallskip
+\iitem{5.}\emph{Orthonormal basis}: any orthonormal $a_1,\ldots,a_m\in\R^m$
+\smallskip
+\iiitem{(a)}\emph{Orthonormal expansion formula}: $(\forall b\in\R^m)\left(b=
+\sum_{i=1}^m(a_i^Tb)a_i\right)$\smallskip
+
+\vfill\eject

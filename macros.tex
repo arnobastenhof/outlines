@@ -18,7 +18,9 @@
 \def\multirow#1#2{\multispan#1\hfil#2\hfil\vrule}
 
 % From: Levy, Seroul, "A beginner's book of TeX", p.62.
-\def\itemitemitem{\par\indent\indent\hangindent3\parindent\textindent}
+\def\iitem{\itemitem}
+\def\iiitem{\par\indent\indent\hangindent3\parindent\textindent}
+\def\iiiitem{\par\indent\indent\indent\hangindent4\parindent\textindent}
 
 % Emphasis
 \def\emph#1{{\bf #1}}

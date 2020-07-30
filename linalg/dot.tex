@@ -1,49 +1,46 @@
-\input epsf
-\input ../macros.tex
-
 \beginsection Dot products (or: norms and angles)
 
 \item{A.}\emph{Euclidean norm} (/magnitude/length) $\|x\|\in\R$ of $x\in\R^m$:
 $(x^Tx)^{1/2}$, generalizing $\|x\|=\sqrt{x^2}$\smallskip
-\itemitem{1.}Properties:\smallskip
-\itemitemitem{(a)}\emph{Positive definiteness}: $\|x\|>0$ (non-negativity) and
+\iitem{1.}Properties:\smallskip
+\iiitem{(a)}\emph{Positive definiteness}: $\|x\|>0$ (non-negativity) and
 $\|x\|=0\leftrightarrow x=0$ (definiteness)\smallskip
-\itemitemitem{(b)}\emph{Nonnegative homogeneity}: $\|\beta x\|=|\beta\|\|x\|$
+\iiitem{(b)}\emph{Nonnegative homogeneity}: $\|\beta x\|=|\beta\|\|x\|$
 \smallskip
-\itemitemitem{(c)}\emph{Triangle ineq/sub-additivity}: $\|x+y\|\leq\|x\|+\|y\|$
+\iiitem{(c)}\emph{Triangle ineq/sub-additivity}: $\|x+y\|\leq\|x\|+\|y\|$
 \smallskip
-\itemitem{2.}\emph{Unit vector}: any $a\in\R^m$ s.t. $\|a\|=1$\smallskip
-\itemitemitem{(a)}\emph{Standard unit vectors}: $e_1,\ldots,e_m\in\R^m$ where
+\iitem{2.}\emph{Unit vector}: any $a\in\R^m$ s.t. $\|a\|=1$\smallskip
+\iiitem{(a)}\emph{Standard unit vectors}: $e_1,\ldots,e_m\in\R^m$ where
 $e_i(j)=1$ iff $i=j$ and $0$ otherwise\smallskip
-\itemitem{3.}\emph{Direction} of $a\in\R^m$: the unit vector $a/\|a\|\in\R^m$
+\iitem{3.}\emph{Direction} of $a\in\R^m$: the unit vector $a/\|a\|\in\R^m$
 (so vector = magnitude $\times$ direction)\smallskip
 
 \item{B.}\emph{Cauchy-Schwarz inequality}: $|a^Tb|\leq\|a\|\|b\|$\smallskip
-\itemitem{1.} Proves triangle ineq: $\|a+b\|^2=\|a\|^2+2a^Tb+\|b\|^2\leq\|a\|^2
+\iitem{1.} Proves triangle ineq: $\|a+b\|^2=\|a\|^2+2a^Tb+\|b\|^2\leq\|a\|^2
 +2\|a\|\|b\|+\|b\|^2=(\|a\|+\|b\|)^2$\smallskip
-\itemitem{2.}\emph{Proof}. Immediate if $a=0$ or $b=0$. Else, for $\alpha=
+\iitem{2.}\emph{Proof}. Immediate if $a=0$ or $b=0$. Else, for $\alpha=
 \|a\|$, $\beta=\|b\|$,\smallskip
-\itemitemitem{(a)} $0\leq\|\beta a-\alpha b\|^2=\beta^2\|a\|^2-2\alpha\beta
+\iiitem{(a)} $0\leq\|\beta a-\alpha b\|^2=\beta^2\|a\|^2-2\alpha\beta
 (a^Tb)+\alpha^2\|b\|^2=2\|a\|^2\|b\|^2-2\|a\|\|b\|(a^Tb)$\smallskip
-\itemitemitem{(b)} Division by $2\|a\|\|b\|$ gives $0\leq\|a\|\|b\|-a^Tb$, iff
+\iiitem{(b)} Division by $2\|a\|\|b\|$ gives $0\leq\|a\|\|b\|-a^Tb$, iff
 $a^Tb\leq\|a\|\|b\|$\smallskip
-\itemitemitem{(c)} By (b), $-a^Tb=(-a)^Tb\leq\|-a\|\|b\|=\|a\|\|b\|$\smallskip
+\iiitem{(c)} By (b), $-a^Tb=(-a)^Tb\leq\|-a\|\|b\|=\|a\|\|b\|$\smallskip
 
 \item{C.}(Smallest positive) \emph{angle} $\Theta=\angle(a,b)$ between non-zero
 $a,b\in\R^m$: $\arccos\left({a^Tb\over\|a\|\|b\|}\right)\in[0,\pi]$\smallskip
-\itemitem{1.}\emph{Well-definedness}: ${a^Tb\over\|a\|\|b\|}\in
+\iitem{1.}\emph{Well-definedness}: ${a^Tb\over\|a\|\|b\|}\in
 {\rm Dom}_{\arccos}=[-1,1]$ by Cauchy-Schwarz\smallskip
-\itemitem{2.}\emph{Proof} Letting $c=a-b$,\smallskip
-\itemitemitem{(a)} $\|c\|^2=\|a\|^2+\|b\|^2-2\|a\|\|b\|\cos\Theta$ by the law
+\iitem{2.}\emph{Proof} Letting $c=a-b$,\smallskip
+\iiitem{(a)} $\|c\|^2=\|a\|^2+\|b\|^2-2\|a\|\|b\|\cos\Theta$ by the law
 of cosines\smallskip
-\itemitemitem{(b)} At the same time $\|c\|^2=\sum_{i=1}^m(a_i^2-2a_ib_i+b_i^2)$
+\iiitem{(b)} At the same time $\|c\|^2=\sum_{i=1}^m(a_i^2-2a_ib_i+b_i^2)$
 \smallskip
-\itemitemitem{(c)} By (a) and (b), $2\|a\|\|b\|\cos\Theta=2a^Tb$, so $\cos\Theta
+\iiitem{(c)} By (a) and (b), $2\|a\|\|b\|\cos\Theta=2a^Tb$, so $\cos\Theta
 ={a^Tb\over\|a\|\|b\|}$\smallskip
-\itemitem{3.}\emph{Properties}: $\angle(a,b)=\angle(b,a)$ and $\angle(\alpha a,
+\iitem{3.}\emph{Properties}: $\angle(a,b)=\angle(b,a)$ and $\angle(\alpha a,
 \alpha b)=\angle(a,b)$ ($\alpha\not=0$)\smallskip
-\itemitem{4.} Acute and obtuse angles:\smallskip
-\itemitem{}\vbox{\offinterlineskip
+\iitem{4.} Acute and obtuse angles:\smallskip
+\iitem{}\vbox{\offinterlineskip
 % ===== Preamble =====
 \halign{
 \vrule                % Vertical line
@@ -65,9 +62,9 @@ width0.6pt#&          % Make the line a little thicker compared to normal
 &$\pi$&$=-\|a\|\|b\|$&are anti-aligned&\epsfbox{dot.7}&\cr
 \noalign{\hrule height 0.6pt}
 }}\smallskip
-\itemitem{5.}\emph{Pythagoras}: $a^Tb=\|a\|b\|\cos\Theta$, so $\|a+b\|^2=\|a\|^2
+\iitem{5.}\emph{Pythagoras}: $a^Tb=\|a\|b\|\cos\Theta$, so $\|a+b\|^2=\|a\|^2
 +\|b\|^2$ if $\Theta=\pi/2$ rad\smallskip
-\itemitem{6.}\emph{Example} (see Figure): For $v=\left[\matrix{x_1-x_3\cr
+\iitem{6.}\emph{Example} (see Figure): For $v=\left[\matrix{x_1-x_3\cr
 y_1-y_3}\right]$ and $w=\left[\matrix{x_2-x_3\cr y_2-y_3}\right]$, we find
 $\Theta=\arccos\left({v^Tw\over\|v\|\|w\|}\right)$
 
@@ -87,4 +84,4 @@ $\Theta=\arccos\left({v^Tw\over\|v\|\|w\|}\right)$
 C1. $y=\sin x$&C1. $y=\arccos x$&C2. Law of cosines&C6. Example\cr
 }}
 
-\bye
+\vfill\eject
