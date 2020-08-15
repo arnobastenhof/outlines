@@ -1,0 +1,111 @@
+\beginsection The Simplex Method
+
+\item{A.}Transformation to \emph{canonical form}\smallskip
+\iitem{1.}Introduce \emph{primal slack( variable)s} $x_{n+i}=b_i-\sum_{j=1}^n
+a_{ij}x_j\geq 0$ ($1\leq i\leq m)$\smallskip
+\iitem{1.}Introduce \emph{dual slack( variable)s} $y_{j}=\sum_{i=1}^m
+a_{ij}y_{n+i}-c_j\geq 0$ ($1\leq j\leq n)$\smallskip
+
+\item{B.}\emph{Data representation}\smallskip
+\iitem{1.}A \emph{permutation} $P$ of $\{1,\ldots,n+m\}$\smallskip
+\iiitem{(a)}\emph{Basic (dependent) variables}: ${\sl B}_{\rm primal}=\{
+x_{P(n+i)}\}_{1\leq i\leq m}$, ${\sl B}_{\rm dual}=\{ y_{P(j)}\}_{1\leq j\leq
+n}$\smallskip
+\iiitem{(b)}\emph{Nonbasic (independent) variables}: ${\sl N}_{\rm primal}=\{
+x_{P(j)}\}_{1\leq j\leq n}$, ${\sl N}_{\rm dual}=\{ y_{P(n+i)}\}_{1\leq i\leq
+m}$\smallskip
+\iitem{2.}A \emph{(compact) tableau}, initialized with $P={\sl id}$, $d=0$,
+$\bar{b}_i=b_i$, $\bar{c}_j=c_j$ and $\bar{a}_{ij}=a_{ij}$:\smallskip
+\iitem{}\vbox{\offinterlineskip
+% ===== Preamble =====
+\halign{
+\vrule                % Vertical line
+height2.75ex          % Add extra whitespace on top of rows
+depth1.25ex           % Add extra whitespace at bottom of rows
+width0.6pt#&          % Make the line a little thicker compared to normal
+\enskip\hfil #\enskip\vrule&                       % Column 1
+\enskip\hfil #\hfil\enskip&                        % Column 2
+\enskip\hfil #\hfil\enskip&                        % Column 3
+\enskip\hfil #\hfil\enskip&                        % Column 4
+\enskip\hfil #\hfil\enskip\vrule&                  % Column 5
+\enskip #\hfil\enskip&#\vrule width 0.6pt\cr       % Column 6
+\noalign{\hrule height 0.6pt}
+% ==== Rows ====
+% Row 1
+&&$x_{P(1)}$&$\cdots$&$x_{P(n)}$&$1$&&\cr
+\noalign{\hrule}
+% Row 2
+&$y_{P(n+1)}$&$-\bar{a}_{11}$&$\cdots$&$-\bar{a}_{1n}$&$\bar{b}_1$&$=x_{P(n+1)}$
+&\cr
+% Row 3
+\omit\vrule width0.6pt&$\vdots$&$\vdots$&$\ddots$&$\vdots$&$\vdots$&$\vdots$&\cr
+% Row 4
+&$y_{P(n+m)}$&$-\bar{a}_{m1}$&$\cdots$&$-\bar{a}_{mn}$&$\bar{b}_m$&$=x_{P(n+m)}$
+&\cr
+&$1$&$\bar{c}_1$&$\cdots$&$\bar{c}_n$&$d$&$=u$&\cr
+\noalign{\hrule}
+&&$=-y_{P(1)}$&$\cdots$&$=-y_{P(n)}$&$=v$&&\cr
+\noalign{\hrule height 0.6pt}
+}}\smallskip
+\iiitem{(a)}\emph{Primal problem}: max $u=d+\sum_{j=1}^n\bar{c}_jx_{P(j)}$ s.t.
+$x_{P(n+i)}=\bar{b}_i-\sum_{j=1}^n\bar{a}_{ij}x_{P(j)}\geq 0$ ($1\leq i\leq m$)
+and $x_{P(j)}\geq 0$ ($1\leq j\leq n$)\smallskip
+\iiitem{(b)}\emph{Dual problem}: min
+$v=d+\sum_{i=1}^m\bar{b}_iy_{P(n+i)}$ s.t.
+$y_{P(j)}=\sum_{i=1}^m\bar{a}_{ij}y_{P(n+i)}-\bar{c}_j\geq 0$ ($1\leq j\leq n$)
+and $y_{P(n+i)}\geq 0$ ($1\leq i\leq m$)\smallskip
+\iiitem{(c)}\emph{Complementary basic solutions} $x_{P(j)}=y_{P(n+i)}=0$,
+$x_{P(n+i)}=\bar{b}_i$, $y_{P(j)}=-\bar{c}_j$, $u=v=d$
+\smallskip
+\iiiitem{I.}\emph{Primal feasible} iff $\bar{b}_i\geq 0$, \emph{dual feasible}
+iff $\bar{c}_j\leq 0$ ($i=1\ldots m$,  $j=1\ldots n$)\smallskip
+\iiitem{(d)}A tableau is primal- and/or dual feasible iff its complementary
+basic solutions are\smallskip
+
+\item{C.}\emph{Pivoting} on the $(l,k)^{\rm th}$ entry (the \emph{pivot}) of an
+$m+1$-by-$n+1$ tableau $Z$ ($1\leq l\leq m$, $1\leq k\leq n$)\smallskip
+\iitem{1.}\emph{Update tableau}\smallskip
+\settabs\+\iitem{}&(a) $z_{ij}\leftarrow z_{ij}-z_{ik}z_{lk}^{-1}z_{lj}$
+($i\not=l$, $j\not=k$)\qquad&\cr
+\+&(a) $z_{ij}\leftarrow z_{ij}-z_{ik}z_{lk}^{-1}z_{lj}$ ($i\not=l$, $j\not=k$)&
+(c)$z_{lj}\leftarrow-z_{lk}^{-1}z_{lj}$ ($j\not=k$)\cr\smallskip
+\+&(b) $z_{ik}\leftarrow z_{ik}z_{lk}^{-1}$ ($i\not=l$)&
+(d) $z_{lk}\leftarrow z_{lk}^{-1}$\cr\smallskip
+\iitem{2.}\emph{Update basic- and nonbasic variables}: swap $P(k)$ and
+$P(n+l)$\smallskip
+
+\item{D.}\emph{Primal simplex method} for primal feasible tableau\smallskip
+\iitem{1.}If $\forall 1\leq j\leq n,\bar{c}_j\leq 0$, stop (complementary basic
+solutions are primal- and dual feasible) \smallskip
+\iitem{2.}Select an \emph{entering variable} $x_{P(k)}$ s.t. $\bar{c}_k>0$
+\smallskip
+\iiitem{(a)}\emph{Motivation}: making $x_{P(k)}$ nonzero (and nonbasic)
+increases $u$\smallskip
+\iiitem{(a)}E.g., apply \emph{largest coefficient rule}: select $k$ s.t.
+$\bar{c}_k>0$ is maximal\smallskip
+\iitem{3.}If $\forall 1\leq i\leq m,\bar{a}_{ik}\leq 0$, halt (primal problem
+unbounded, dual problem infeasible)\smallskip
+\iitem{4.}Select a \emph{leaving variable} $x_{P(n+l)}$ s.t. $\bar{b}_l/
+\bar{a}_{lk}$ is a min of $\{\bar{b}_i/\bar{a}_{ik}\ |\ \bar{a}_{ik}>0\}_{1\leq
+i\leq m}$\smallskip
+\iiitem{(a)}\emph{Motivation}: $x_{P(n+i)}=\bar{b}_i-\bar{a}_{ik}x_{P(k)}\geq 0$
+iff $x_{P(k)}\leq\bar{b}_i/\bar{a}_{ik}$, so $\bar{b}_l/\bar{a}_{lk}$ largest
+assignable value to $x_{P(k)}$ preserving primal feasibility\smallskip
+\iitem{5.}Pivot on $-\bar{a}_{lk}$, noting the resulting tableau remains
+primal feasible, and go to 1\smallskip
+
+\item{E.}\emph{Dual simplex method} for dual feasible tableau ($=$ primal
+simplex method applied to dual problem)\smallskip
+\iitem{1.}If $\forall 1\leq i\leq m,\bar{b}_i\geq 0$, stop (complementary basic
+solutions are primal- and dual optimal)\smallskip
+\iitem{2.}Select a \emph{leaving variable} $x_{P(n+l)}$ s.t. $\bar{b}<0$ is
+minimal\smallskip
+\iitem{3.}If $\forall 1\leq j\leq n,\bar{a}_{lj}\geq 0$, halt (primal problem
+infeasible, dual problem unbounded)\smallskip
+\iitem{4.}Select an \emph{entering variable} $x_{P(k)}$ s.t. $\bar{c}_l/
+\bar{a}_{lk}$ is a min of $\{\bar{c}_j/\bar{a}_{lj}\ |\ \bar{a}_{lj}<0\}_{1\leq
+j\leq n}$\smallskip
+\iitem{5.}Pivot on $-\bar{a}_{lk}$, noting the resulting tableau remains
+dual feasible, and go to 1\smallskip
+
+\vfill\eject
