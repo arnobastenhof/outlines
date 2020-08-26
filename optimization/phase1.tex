@@ -1,0 +1,155 @@
+\beginsection Phase I Algorithms for Infeasible Start Tableaux
+
+\item{A.}Application of the simplex method when the initial tableau is primal-
+and/or dual infeasible\smallskip
+\iitem{1.}If primal- \'and dual feasible: initial tableau is optimal\smallskip
+\iitem{2.}If primal feasible and dual infeasible: apply primal simplex method
+\smallskip
+\iitem{3.}If primal infeasible and dual feasible: apply dual simplex method
+\smallskip
+\iitem{4.}If primal- \'and dual infeasible: apply one of methods B, C, D
+\smallskip
+\item{B.}\emph{Primal algorithm}\smallskip
+\iitem{1.}\emph{Auxiliary problem}:
+max $\xi=-x_0$ s.t. $\sum_{j=1}^na_{ij}x_j-x_0\leq b_i$ ($1\leq i\leq m$),
+$x_0,x_j\geq 0$ ($1\leq j\leq n$)\smallskip
+\iiitem{(a)}Auxiliary problem is primal feasible: $x_j\leftarrow 0$, $x_0
+\leftarrow\max_{1\leq i\leq m}|b_i|$\smallskip
+\iiitem{(b)}Original problem is primal feasible iff auxiliary problem has
+optimal solution $\xi=0$ (so $x_0=0$)\smallskip
+\iitem{2.}Initialize tableau, $P$ now a permutation over $\{0,\ldots,n+m\}$
+\smallskip
+\iitem{}\vbox{\offinterlineskip
+% ===== Preamble =====
+\halign{
+\vrule                % Vertical line
+height2.75ex          % Add extra whitespace on top of rows
+depth1.25ex           % Add extra whitespace at bottom of rows
+width0.6pt#&          % Make the line a little thicker compared to normal
+\enskip\hfil #\hfil\enskip&                        % Column 1
+\enskip\hfil #\hfil\enskip&                        % Column 2
+\enskip\hfil #\hfil\enskip&                        % Column 3
+\enskip\hfil #\hfil\enskip&                        % Column 4
+\enskip\hfil #\hfil\enskip\vrule&                  % Column 5
+\enskip #\hfil\enskip&#\vrule width 0.6pt\cr       % Column 6
+\noalign{\hrule height 0.6pt}
+% ==== Rows ====
+% Row 1
+&$x_0$&$x_1$&$\cdots$&$x_n$&$1$&&\cr
+\noalign{\hrule}
+% Row 2
+&$-a_{10}$&$-a_{11}$&$\cdots$&$-a_{1n}$&$b_1$&$=x_{n+1}$
+&\cr
+% Row 3
+\omit\vrule width0.6pt&$\vdots$&$\vdots$&$\ddots$&$\vdots$&$\vdots$&$\vdots$&\cr
+% Row 4
+&$-a_{m0}$&$-a_{m1}$&$\cdots$&$-a_{mn}$&$b_m$&$=x_{n+m}$
+&\cr
+% Row 5
+&$0$&$c_1$&$\cdots$&$c_n$&$0$&$=u$&\cr
+% Row 6
+&$-1$&$0$&$\cdots$&$0$&$0$&$=\xi$&\cr
+\noalign{\hrule height 0.6pt}
+}}\smallskip
+\iitem{3.}Pivot on $a_{lk}$ for $k=0$ and $l=\min_{1\leq i\leq m}b_i(<0)$
+\smallskip
+\iitem{4.}Assert resulting tableau is primal feasible and apply primal simplex
+method to maximize $\xi$\smallskip
+\iitem{5.}If $\xi\not=0$, halt (problem is primal- and dual infeasible). Else,
+tableau is primal feasible.
+\smallskip
+\iitem{6.}Apply primal simplex method to maximize $u$, ignoring col $P^{-1}(0)$
+($x_0$)\smallskip
+\smallskip
+
+\item{C.}\emph{Dual primal algorithm}\smallskip
+\iitem{1.}Introduce the \emph{modified primal objective} $\eta=\sum_{j=1}^n-x_j$,
+so the modified problem is dual feasible\smallskip
+\iitem{3.}Apply dual simplex method to maximize $\eta$\smallskip
+\iitem{4.}Half if modified problem is dual unbounded (original problem is
+primal infeasible)\smallskip
+\iitem{5.}Apply primal simplex method to maximize $u$\smallskip
+
+\item{D.}\emph{Primal dual algorithm}\smallskip
+\iitem{1.}Introduce \emph{modified ineq constraints} $\sum_{j=1}^na_{ij}
+x_j\leq 1$, so the modified problem is primal feasible\smallskip
+\iitem{2.}Apply primal simplex method to maximize $u$\smallskip
+\iitem{3.}Halt if modified problem is primal unbounded (original problem is
+dual infeasible)\smallskip
+\iitem{4.}Reintroduce $\bar{b}_i$ and apply dual simplex method to maximize $u$
+\smallskip
+
+\item{}\vbox{\offinterlineskip
+% ===== Preamble =====
+\halign{
+\enskip\hfil #\hfil\enskip&                        % Column 1
+\enskip\hfil #\hfil\enskip\cr                      % Column 2
+\quad\vbox{\offinterlineskip
+% ===== Preamble =====
+\halign{
+\vrule                % Vertical line
+height2.75ex          % Add extra whitespace on top of rows
+depth1.25ex           % Add extra whitespace at bottom of rows
+width0.6pt#&          % Make the line a little thicker compared to normal
+\enskip\hfil #\hfil\enskip&                        % Column 1
+\enskip\hfil #\hfil\enskip&                        % Column 2
+\enskip\hfil #\hfil\enskip&                        % Column 3
+\enskip\hfil #\hfil\enskip\vrule&                  % Column 4
+\enskip #\hfil\enskip&#\vrule width 0.6pt\cr       % Column 5
+\noalign{\hrule height 0.6pt}
+% ==== Rows ====
+% Row 1
+&$x_1$&$\cdots$&$x_n$&$1$&&\cr
+\noalign{\hrule}
+% Row 2
+&$-a_{11}$&$\cdots$&$-a_{1n}$&$b_1$&$=x_{n+1}$
+&\cr
+% Row 3
+\omit\vrule width0.6pt&$\vdots$&$\ddots$&$\vdots$&$\vdots$&$\vdots$&\cr
+% Row 4
+&$-a_{m1}$&$\cdots$&$-a_{mn}$&$b_m$&$=x_{n+m}$
+&\cr
+% Row 5
+&$c_1$&$\cdots$&$c_n$&$0$&$=u$&\cr
+% Row 6
+&$-1$&$\cdots$&$-1$&$0$&$=\eta$&\cr
+\noalign{\hrule height 0.6pt}
+}}\qquad\qquad&
+\vbox{\offinterlineskip
+% ===== Preamble =====
+\halign{
+\vrule                % Vertical line
+height2.75ex          % Add extra whitespace on top of rows
+depth1.25ex           % Add extra whitespace at bottom of rows
+width0.6pt#&          % Make the line a little thicker compared to normal
+\enskip\hfil #\hfil\enskip&                        % Column 1
+\enskip\hfil #\hfil\enskip&                        % Column 2
+\enskip\hfil #\hfil\enskip&                        % Column 3
+\enskip\hfil #\hfil\enskip&                        % Column 4
+\enskip\hfil #\hfil\enskip\vrule&                  % Column 5
+\enskip #\hfil\enskip&#\vrule width 0.6pt\cr       % Column 6
+\noalign{\hrule height 0.6pt}
+% ==== Rows ====
+% Row 1
+&$x_1$&$\cdots$&$x_n$&$1$&$1$&&\cr
+\noalign{\hrule}
+% Row 2
+&$-a_{11}$&$\cdots$&$-a_{1n}$&$b_1$&$1$&$=x_{n+1}$
+&\cr
+% Row 3
+\omit\vrule width0.6pt&$\vdots$&$\ddots$&$\vdots$&$\vdots$&$\vdots$&$\vdots$&\cr
+% Row 4
+&$-a_{m1}$&$\cdots$&$-a_{mn}$&$b_m$&$1$&$=x_{n+m}$
+&\cr
+% Row 5
+&$c_1$&$\cdots$&$c_n$&$0$&$0$&$=u$&\cr
+\noalign{\hrule height 0.6pt}
+}}\cr
+% C. Starting tableau for dual primal algorithm&D. Starting tableau for primal
+% dual algorithm\cr
+}}
+\item{}
+C. Starting tableau for dual primal algorithm\qquad D. Starting tableau for primal
+dual algorithm\smallskip
+
+\vfill\eject
