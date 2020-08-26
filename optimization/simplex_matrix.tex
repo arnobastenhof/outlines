@@ -1,0 +1,123 @@
+\beginsection The Simplex Method in Matrix Notation
+
+\item{A.}\emph{Primal problem} in \emph{canonical form}: max $u=c^Tx$ s.t.
+$Ax=b$, $x\geq 0$, where
+\smallskip
+
+\iitem{1.}$A=\left[\matrix{a_{11}&\cdots&a_{1n}&1\cr\vdots&\ddots&\vdots&&
+\ddots\cr a_{m1}&\cdots&a_{mn}&&&1}\right]\in\R^{m\times(n+m)}$\qquad 3.
+$b=\left[\matrix{b_1&\cdots&b_m}\right]^T\in\R^m$
+\smallskip
+\iitem{2.}$x=\left[\matrix{x_1&\cdots&x_n&x_{n+1}&\cdots&x_{n+m}}\right]^T\in
+\R^{n+m}$\qquad 4. $c=\left[\matrix{c_1&\cdots&c_n&0&\cdots&0}\right]^T\in
+\R^{n+m}$\smallskip
+
+
+\item{B.}Split into \emph{basic} and \emph{nonbasic} parts: max
+$u=c_{\cal B}^Tx_{\cal B}+c_{\cal N}^Tx_{\cal N}$ s.t. $Bx_{\cal B}+Nx_{\cal N}=
+b$, $x\geq 0$, for\smallskip
+\iitem{1.}${\cal B}\in\Z^m$, ${\cal N}\in\Z^n$ any \emph{partitioning} of
+$\{1,\ldots,n+m\}$; initially ${\cal B}=\left[n+i\right]_{1\leq i\leq m}$,
+${\cal N}=\left[j\right]_{1\leq j\leq n}$\smallskip
+\iitem{2.}$B=A({\cal B})=[a_i]_{i\in\cal B}\in\R^{m\times m}$, $N=A({\cal N})
+=[a_j]_{j\in\cal N}\in\R^{m\times n}$\smallskip
+\iitem{3.}$x_{\cal B}=x({\cal B})=[x_i]_{i\in\cal B}\in\R^m$, $x_{\cal N}=
+x({\cal N})\in\R^n$, $c_{\cal B}=c({\cal B})\in\R^m$, $c_{\cal N}=c({\cal N})\in
+\R^n$ \smallskip
+
+\item{C.}\emph{Primal tableau}: max $u=c_{\cal B}^TB^{-1}b-((B^{-1}N)^T
+c_{\cal B}-c_{\cal N})^Tx_{\cal N}$ s.t. $x_{\cal N},x_{\cal B}=B^{-1}b-B^{-1}
+Nx_{\cal N}\geq 0$\smallskip
+\iitem{1.}\emph{Derivation}, assuming $B$ is a \emph{basis} for $\R^m$ and hence
+invertible:\smallskip
+\iiitem{(a)}Solving $Bx_{\cal B}+Nx_{\cal N}=b$ for $x_{\cal B}$ gives
+$x_{\cal B}=B^{-1}b-B^{-1}Nx_{\cal N}$\smallskip
+\iiitem{(b)}Substitute $B^{-1}b-B^{-1}Nx_{\cal N}$ for $x_{\cal B}$ in
+$c^T_{\cal B}x_{\cal B}+c^T_{\cal N}x_{\cal N}$\smallskip
+\iitem{2.}Cf. tableaux in \emph{component form}:\smallskip
+\settabs\+\iitem{}&(a) $c_{\cal N}-(B^{-1}N)^Tc_{\cal B}=[\bar{c}_j]_{1\leq j
+\leq n}$\qquad&\cr
+\+&(a) $c^T_{\cal B}B^{-1}b=d$&(c) $B^{-1}b=[\bar{b}_i]_{1\leq i\leq m}$\cr
+\smallskip
+\+&(b) $c_{\cal N}-(B^{-1}N)^Tc_{\cal B}=[\bar{c}_j]_{1\leq j\leq n}$&(d)
+$B^{-1}N=[\bar{a}_{ij}]_{1\leq i\leq m, 1\leq j\leq n}$\cr\smallskip
+\iitem{3.}Associated \emph{basic solution}: $x_{\cal N}^*=0$, $x_{\cal B}^*=
+B^{-1}b$, $u=c_{\cal B}^TB^{-1}b$\smallskip
+
+\item{D.}\emph{Dual tableau}: max $-v=-c^T_{\cal B}B^{-1}b-(B^{-1}N)^T
+y_{\cal B}$ s.t. $y_{\cal B},y_{\cal N}=((B^{-1}N)^Tc_{\cal B}-c_{\cal N})+
+(B^{-1}N)^Ty_{\cal B}\geq 0$\smallskip
+\iitem{1.}\emph{Derivation}: $-v=-d-\sum_{i\in\cal B}\bar{b}_iy_{n+i}$ and
+$y_{\cal N}=\left[\sum_{i\in\cal B}\bar{a}_{ij}y_{n+i}-
+\bar{c}_j\right]_{j\in\cal N}$ under C2\smallskip
+\iitem{2.}Associated \emph{basic solution}: $y^*_{\cal B}=0$, $y_{\cal N}^*=
+(B^{-1}N)^Tc_{\cal B}-c_{\cal N}$, $-v=-c_{\cal B}^TB^{-1}b$\smallskip
+
+\item{E.}\emph{Shorthand} for primal- and dual tableaux:\smallskip
+\iitem{1.}$u=d-(y_{\cal N}^*)^Tx_{\cal N}$, $x_{\cal B}=x_{\cal B}^*-B^{-1}N
+x_{\cal N}$\qquad 2. $-v=-d-(x_{\cal B}^*)^Ty_{\cal B}$, $y_{\cal N}=
+y_{\cal N}^*+(B^{-1}N)^Ty_{\cal B}$\smallskip
+
+\item{F.}The \emph{primal}- and \emph{dual simplex methods}\smallskip
+\iitem{1.}\emph{Preconditions}: $b\geq 0$ (primal feasibility) or
+$c(1:n)\leq 0$ (dual feasibility)\smallskip
+
+\iitem{2.}\emph{Invariants}: $B$ is a basis for $\R^m$, and $x^*_{\cal B}\geq 0$
+(primal method) or $y^*_{\cal N}\geq 0$ (dual method)\smallskip
+\iitem{3.}\emph{Algorithms}: repeat 2-13 until stopping criteria in 2 or 7 are
+met, after initialization in 1\smallskip
+
+\vbox{\offinterlineskip
+% ===== Preamble =====
+\halign{
+\vrule                % Vertical line
+height2.75ex          % Add extra whitespace on top of rows
+depth1.25ex           % Add extra whitespace at bottom of rows
+width0.6pt#&          % Make the line a little thicker compared to normal
+\enskip #\hfil\enskip\vrule&                       % Column 1
+\enskip #\hfil\enskip\vrule&                       % Column 2
+\enskip #\hfil\enskip&#\vrule width 0.6pt\cr       % Column 3
+\noalign{\hrule height 0.6pt}
+% Row 1
+&{\bf Description}&{\bf Primal simplex method}&{\bf Dual simplex method}&\cr
+\noalign{\hrule}
+&1. Initialization&\multirow{2}{\ ${\cal N}\leftarrow[j]_{1\leq j\leq n}^T$,
+${\cal B}\leftarrow[n+i]_{1\leq i\leq m}^T$, $B\leftarrow I_m$, $N\leftarrow A$,
+$x_{\cal B}^*\leftarrow b$, $y_{\cal N}^*\leftarrow-c_{\cal N}$\ }&\cr
+\noalign{\hrule height 0.6pt}
+&2. Check for optimality&Stop if $y_{\cal N}^*\geq 0$&Stop if $x_{\cal B}^*\geq
+0$&\cr
+\noalign{\hrule height 0.6pt}
+&3. Entering (leaving) variable&Pick $k={\cal N}(j)$ s.t. $y^*_j<0$ ($\bar{c}_j>
+0)$&Pick $l={\cal B}(i)$ s.t. $x^*_i<0$ ($\bar{b}_i<0$)&\cr
+\noalign{\hrule height 0.6pt}
+&4. Primal (dual) step direction&$\Delta x_{\cal B}\leftarrow B^{-1}Ne_j
+(=[\bar{a}_{ij}]_{1\leq i\leq m})$&$\Delta y_{\cal N}\leftarrow-(B^{-1}N)^Te_i(=
+[-\bar{a}_{ij}]_{1\leq j\leq n})$&\cr
+\noalign{\hrule height 0.6pt}
+&5. Leaving (entering) variable&Pick $l={\cal B}(i)$ maximizing ${\Delta x_i
+\over x^*_i}$&Pick $k={\cal N}(j)$ maximizing ${\Delta y_j\over y^*_j}$&\cr
+\noalign{\hrule height 0.6pt}
+&6. Primal (dual) step length&$t\leftarrow x_i^*/\Delta x_i$&$s\leftarrow
+y^*_j/\Delta y_j$&\cr
+\noalign{\hrule height 0.6pt}
+&7. Check for unboundedness&Stop if $t\leq 0$&Stop if $s\leq 0$&\cr
+\noalign{\hrule height 0.6pt}
+&8. Dual (primal) step direction&$\Delta y_{\cal N}\leftarrow-(B^{-1}N)^T
+e_i$&$\Delta x_{\cal B}\leftarrow B^{-1}Ne_j$&\cr
+\noalign{\hrule height 0.6pt}
+&9. Dual (primal) step length&$s\leftarrow y_j^*/\Delta y_j$&$t\leftarrow
+x^*_i/\Delta x_i$&\cr
+\noalign{\hrule height 0.6pt}
+&10. Update primal solution&\multirow{2}{$x_{\cal B}^*\leftarrow x_{\cal B}^*-t
+\Delta x_{\cal B}$, $x_i^*\leftarrow t$}&\cr
+\noalign{\hrule height 0.6pt}
+&11. Update dual solution&\multirow{2}{$y_{\cal N}^*\leftarrow y_{\cal N}^*-s
+\Delta y_{\cal N}$, $y_j^*\leftarrow s$}&\cr
+\noalign{\hrule height 0.6pt}
+&12. Update basis&\multirow{2}{${\cal B}(i)\leftarrow k$, ${\cal N}(j)\leftarrow
+l$, $B\leftarrow A({\cal B})$, $N\leftarrow A({\cal N})$}
+&\cr\noalign{\hrule height 0.6pt}
+}}
+
+\vfill\eject

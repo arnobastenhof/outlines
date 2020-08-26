@@ -42,17 +42,17 @@ the \emph{objective function value} $u=\sum_{j=1}^nc_{j}x_j$ subject to
 $\sum_{j=1}^na_{ij}x_j\geq b_i$\smallskip
 \iiitem{(d)}$\sum_{j=1}^na_{ij}x_j\leq b_i$ iff $\sum_{j=1}^na_{ij}x_j+w_i=b_i$
 and $w_i\geq 0$ (for fresh \emph{slack variable} $w_i$)\smallskip
-\iitem{3.}\emph{Dual problem}: min $v=\sum_{i=1}^mb_iy_i$
-s.t. $\sum_{i=1}^ma_{ij}y_i\geq c_j$, $y_i\geq 0$ ($1\leq j\leq n$, $1\leq i
+\iitem{3.}\emph{Dual problem}: min $v=\sum_{i=1}^mb_iy_{n+i}$
+s.t. $\sum_{i=1}^ma_{ij}y_{n+i}\geq c_j$, $y_{n+i}\geq 0$ ($1\leq j\leq n$, $1\leq i
 \leq m$)\smallskip
 \iiitem{(a)}Dual of the dual is the primal\smallskip
-\iiiitem{I.}Dual in primal standard form: $-{\rm max}\ \sum_{i=1}^m(-b_i)y_i$
-s.t. $\sum_{i=1}^m(-a_{ij})y_i\leq(-c_j)$, $y_i\geq 0$\smallskip
+\iiiitem{I.}Dual in primal standard form: $-{\rm max}\ \sum_{i=1}^m-b_iy_{n+i}$
+s.t. $\sum_{i=1}^m-a_{ij}y_{n+i}\leq-c_j$, $y_{n+i}\geq 0$\smallskip
 \iiiitem{II.}Dual of the dual: $-{\rm min}\sum_{j=1}^n(-c_j)x_j$ s.t.
 $\sum_{j=1}^n(-a_{ij})x_j\geq(-b_i)$, $x_j\geq 0$\smallskip
 
 \item{C.}\emph{Solutions}: \'any choice of \emph{decision variables} $x_j$
-($y_i$)\smallskip
+($y_{n+i}$)\smallskip
 \iitem{1.}\emph{Feasible solutions}: any solution satisfying all constraints
 \smallskip
 \iitem{2.}\emph{Optimal solutions}: any feasible solution that attains the
@@ -69,8 +69,8 @@ $x_1,x_2\geq 0$\smallskip
 \item{D.}\emph{Weak Duality Theorem}: $\forall$ primal-, resp. dual feasible
 $(x_1,\ldots,x_n)$, $(y_1,\ldots,y_m)$, we have $u\leq v$\smallskip
 \iitem{1.}\emph{Proof}: $\sum_{j=1}^nc_jx_j\leq\sum_{j=1}^n\left(\sum_{i=1}^m
-a_{ij}y_i\right)x_j=\sum_{i=1}^m\left(\sum_{j=1}^na_{ij}x_j\right)y_i\leq
-\sum_{i=1}^mb_iy_i$\smallskip
+a_{ij}y_{n+i}\right)x_j=\sum_{i=1}^m\left(\sum_{j=1}^na_{ij}x_j\right)y_{n+i}\leq
+\sum_{i=1}^mb_iy_{n+i}$\smallskip
 \iitem{2.}\emph{Corollaries}\smallskip
 \iiitem{(a)}Any primal-, resp. dual feasible $(x_1,\ldots,x_n)$, $(y_1,\ldots,
 y_m)$ s.t. $u=v$ are optimal\smallskip
@@ -78,7 +78,7 @@ y_m)$ s.t. $u=v$ are optimal\smallskip
 infeasible\smallskip
 \iiiitem{I.}Counterexample to $\Leftarrow$: infeasibility of both the primal
 `max $2x_1-x_2$ s.t. $x_1-x_2\leq 1$, $-x_1+x_2\leq -2$, $x_1,x_2\geq 0$' and
-the dual `min $y_1-2y_2$ s.t. $y_1-y_2\geq 2$, $-y_1+y_2\geq -1$, $y_1,y_2\geq
+the dual `min $y_3-2y_4$ s.t. $y_3-y_4\geq 2$, $-y_3+y_4\geq -1$, $y_3,y_4\geq
 0$'\smallskip
 
 \vfill\eject
