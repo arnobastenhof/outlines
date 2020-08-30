@@ -11,7 +11,7 @@ $\|x\|=0\leftrightarrow x=0$ (definiteness)\smallskip
 \smallskip
 \iitem{2.}\emph{Unit vector}: any $a\in\R^m$ s.t. $\|a\|=1$\smallskip
 \iiitem{(a)}\emph{Standard unit vectors}: $e_1,\ldots,e_m\in\R^m$ where
-$e_i(j)=1$ iff $i=j$ and $0$ otherwise\smallskip
+$e_i(j)=1$ if $i=j$ else $0$\smallskip
 \iitem{3.}\emph{Direction} of $a\in\R^m$: the unit vector $a/\|a\|\in\R^m$
 (so vector = magnitude $\times$ direction)\smallskip
 
@@ -33,13 +33,13 @@ $a,b\in\R^m$: $\arccos\left({a^Tb\over\|a\|\|b\|}\right)\in[0,\pi]$\smallskip
 \iitem{2.}\emph{Proof} Letting $c=a-b$,\smallskip
 \iiitem{(a)} $\|c\|^2=\|a\|^2+\|b\|^2-2\|a\|\|b\|\cos\Theta$ by the law
 of cosines\smallskip
-\iiitem{(b)} At the same time $\|c\|^2=\sum_{i=1}^m(a_i^2-2a_ib_i+b_i^2)$
-\smallskip
+\iiitem{(b)} At the same time $\|c\|^2=\|a\|^2-2a^Tb+\|b\|^2$\smallskip
 \iiitem{(c)} By (a) and (b), $2\|a\|\|b\|\cos\Theta=2a^Tb$, so $\cos\Theta
 ={a^Tb\over\|a\|\|b\|}$\smallskip
 \iitem{3.}\emph{Properties}: $\angle(a,b)=\angle(b,a)$ and $\angle(\alpha a,
 \alpha b)=\angle(a,b)$ ($\alpha\not=0$)\smallskip
-\iitem{4.} Acute and obtuse angles:\smallskip
+\iitem{4.} Acute and obtuse angles, noting $a^Tb=\|a\|\|b\|\cos\Theta$:
+\smallskip
 \iitem{}\vbox{\offinterlineskip
 % ===== Preamble =====
 \halign{
@@ -62,7 +62,7 @@ width0.6pt#&          % Make the line a little thicker compared to normal
 &$\pi$&$=-\|a\|\|b\|$&are anti-aligned&\epsfbox{dot.7}&\cr
 \noalign{\hrule height 0.6pt}
 }}\smallskip
-\iitem{5.}\emph{Pythagoras}: $a^Tb=\|a\|b\|\cos\Theta$, so $\|a+b\|^2=\|a\|^2
+\iitem{5.}\emph{Pythagoras}: $a^Tb=\|a\|\|b\|\cos\Theta$, so $\|a+b\|^2=\|a\|^2
 +\|b\|^2$ if $\Theta=\pi/2$ rad\smallskip
 \iitem{6.}\emph{Example} (see Figure): For $v=\left[\matrix{x_1-x_3\cr
 y_1-y_3}\right]$ and $w=\left[\matrix{x_2-x_3\cr y_2-y_3}\right]$, we find

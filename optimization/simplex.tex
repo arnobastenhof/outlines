@@ -1,18 +1,18 @@
 \beginsection The Simplex Method in Component Notation
 
 \item{A.}Transformation to \emph{canonical form}\smallskip
-\iitem{1.}Introduce \emph{primal slack( variable)s} $x_{n+i}=b_i-\sum_{j=1}^n
-a_{ij}x_j\geq 0$ ($1\leq i\leq m)$\smallskip
-\iitem{1.}Introduce \emph{dual slack( variable)s} $y_{j}=\sum_{i=1}^m
-a_{ij}y_{n+i}-c_j\geq 0$ ($1\leq j\leq n)$\smallskip
+\iitem{1.}\emph{Primal Problem}: Introduce \emph{primal slack( variable)s}
+$x_{n+i}=b_i-\sum_{j=1}^na_{ij}x_j\geq 0$ ($1\leq i\leq m)$\smallskip
+\iitem{2.}\emph{Dual Problem}: Introduce \emph{dual slack( variable)s}
+$y_{j}=\sum_{i=1}^ma_{ij}y_{n+i}-c_j\geq 0$ ($1\leq j\leq n)$\smallskip
 
 \item{B.}\emph{Data representation}\smallskip
 \iitem{1.}A \emph{permutation} $P$ of $\{1,\ldots,n+m\}$\smallskip
-\iiitem{(a)}\emph{Basic (dependent) variables}: ${\sl B}_{\rm primal}=\{
-x_{P(n+i)}\}_{1\leq i\leq m}$, ${\sl B}_{\rm dual}=\{ y_{P(j)}\}_{1\leq j\leq
+\iiitem{(a)}\emph{Basic (dependent) variables}: ${\cal B}_{\rm primal}=\{
+x_{P(n+i)}\}_{1\leq i\leq m}$, ${\cal B}_{\rm dual}=\{ y_{P(j)}\}_{1\leq j\leq
 n}$\smallskip
-\iiitem{(b)}\emph{Nonbasic (independent) variables}: ${\sl N}_{\rm primal}=\{
-x_{P(j)}\}_{1\leq j\leq n}$, ${\sl N}_{\rm dual}=\{ y_{P(n+i)}\}_{1\leq i\leq
+\iiitem{(b)}\emph{Nonbasic (independent) variables}: ${\cal N}_{\rm primal}=\{
+x_{P(j)}\}_{1\leq j\leq n}$, ${\cal N}_{\rm dual}=\{ y_{P(n+i)}\}_{1\leq i\leq
 m}$\smallskip
 \iitem{2.}A \emph{(compact) tableau}, initialized with $P={\sl id}$, $d=0$,
 $\bar{b}_i=b_i$, $\bar{c}_j=c_j$ and $\bar{a}_{ij}=a_{ij}$:\smallskip
@@ -58,9 +58,11 @@ and $y_{P(n+i)}\geq 0$ ($1\leq i\leq m$)\smallskip
 $x_{P(n+i)}=\bar{b}_i$, $y_{P(j)}=-\bar{c}_j$, $u=v=d$
 \smallskip
 \iiiitem{I.}\emph{Primal feasible} iff $\bar{b}_i\geq 0$, \emph{dual feasible}
-iff $\bar{c}_j\leq 0$ ($i=1\ldots m$,  $j=1\ldots n$)\smallskip
+iff $\bar{c}_j\leq 0$ ($1\leq i\leq m$,  $1\leq j\leq n$)\smallskip
 \iiitem{(d)}A tableau is primal- and/or dual feasible iff its complementary
 basic solutions are\smallskip
+\iiitem{(e)}A teableau is \emph{optimal} iff primal- \'and dual feasible
+\smallskip
 
 \item{C.}\emph{Pivoting} on the $(l,k)^{\rm th}$ entry (the \emph{pivot}) of an
 $m+1$-by-$n+1$ tableau $Z$ ($1\leq l\leq m$, $1\leq k\leq n$)\smallskip
@@ -75,14 +77,14 @@ $m+1$-by-$n+1$ tableau $Z$ ($1\leq l\leq m$, $1\leq k\leq n$)\smallskip
 $P(n+l)$\smallskip
 
 \item{D.}\emph{Primal simplex method} for primal feasible tableau\smallskip
-\iitem{1.}If $\forall 1\leq j\leq n,\bar{c}_j\leq 0$, stop (complementary basic
-solutions are primal- and dual feasible) \smallskip
+\iitem{1.}If $\forall 1\leq j\leq n,\bar{c}_j\leq 0$, stop (tableau is optimal)
+\smallskip
 \iitem{2.}Select an \emph{entering variable} $x_{P(k)}$ s.t. $\bar{c}_k>0$
 \smallskip
 \iiitem{(a)}\emph{Motivation}: making $x_{P(k)}$ nonzero (and nonbasic)
 increases $u$\smallskip
-\iiitem{(a)}E.g., apply \emph{largest coefficient rule}: select $k$ s.t.
-$\bar{c}_k>0$ is maximal\smallskip
+\iiitem{(a)}E.g., apply \emph{largest coefficient rule}: select any $k\in
+{\rm argmax}_j\{\bar{c}_j\ |\ \bar{c}_j>0\}$\smallskip
 \iitem{3.}If $\forall 1\leq i\leq m,\bar{a}_{ik}\leq 0$, halt (primal problem
 unbounded, dual problem infeasible)\smallskip
 \iitem{4.}Select a \emph{leaving variable} $x_{P(n+l)}$ s.t. $\bar{b}_l/
@@ -94,12 +96,11 @@ assignable value to $x_{P(k)}$ preserving primal feasibility\smallskip
 \iitem{5.}Pivot on $-\bar{a}_{lk}$, noting the resulting tableau remains
 primal feasible, and go to D1\smallskip
 
-\item{E.}\emph{Dual simplex method} for dual feasible tableau ($=$ primal
-simplex method applied to dual problem)\smallskip
-\iitem{1.}If $\forall 1\leq i\leq m,\bar{b}_i\geq 0$, stop (complementary basic
-solutions are primal- and dual optimal)\smallskip
-\iitem{2.}Select a \emph{leaving variable} $x_{P(n+l)}$ s.t. $\bar{b}<0$ is
-minimal\smallskip
+\item{E.}\emph{Dual simplex method} for dual feasible tableau\smallskip
+\iitem{1.}If $\forall 1\leq i\leq m,\bar{b}_i\geq 0$, stop (tableau is optimal)
+\smallskip
+\iitem{2.}Select as a \emph{leaving variable} any $x_{P(n+l)}$ s.t. $l\in
+{\rm argmax}_i\{\bar{b}_i\ |\ \bar{b}_i<0\}$\smallskip
 \iitem{3.}If $\forall 1\leq j\leq n,\bar{a}_{lj}\geq 0$, halt (primal problem
 infeasible, dual problem unbounded)\smallskip
 \iitem{4.}Select an \emph{entering variable} $x_{P(k)}$ s.t. $\bar{c}_l/

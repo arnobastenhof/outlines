@@ -14,20 +14,19 @@ a=b$\smallskip
 \iiitem{(c)}\emph{Symmetry}: $\dist{a}{b}=\dist{b}{a}$\smallskip
 \iiitem{(d)}\emph{Triangle inequality/sub-additivity}: $\dist{a}{c}\leq
 \dist{a}{b}+\dist{b}{c}$\smallskip
-\iitem{2.}\emph{Root mean square (RMS) deviation} $\rms{a-b}$ between
+\iitem{3.}\emph{Examples}, assuming all $a_i$ (and $b_i$) have similar magnitude
+\smallskip
+\iiitem{(a)}If $a,b$ are feature vectors, then the \emph{feature distance}
+$\dist{a}{b}$ measures their dissimilarity.\smallskip
+\iiitem{(b)}If $a,b$ are histograms of word occurrences for two documents, then
+$\dist{a}{b}$ is called the \emph{document dissimilarity}.\smallskip
+
+\item{B.}\emph{Root mean square (RMS) deviation/error} $\rms{a-b}$ between
 $a,b\in\R^m$: $\|a-b\|/\sqrt{m}$\smallskip
-\iitem{3.}\emph{Examples}:
-\iiitem{(a)}\emph{Feature distance}: If $a,b$ are feature vectors,
-then the feature distance $\dist{a}{b}$ measures their dissimilarity.\smallskip
-\iiitem{(b)}\emph{Document dissimilarity}: If $a,b$ are histograms of word
-occurrences for two documents, then $\dist{a}{b}$ is called the document
-dissimilarity.\smallskip
-\iiitem{(c)}\emph{RMS prediction error}: When $y,\widehat{y}$ are
-measurements and their predictions, then $r=y-\widehat{y}$ is the
-residual/prediction error, and $\rms{y-\widehat{y}}$ the RMS prediction error.
-\iitem{4.}For measuring dissimilarity, $\dist{a}{b}$ implicitly
-assumes all $a_i$ (and $b_i$) have similar magnitude, as when, e.g., they are
-expressed in the same units.\smallskip
+\iitem{1.}\emph{Examples}\smallskip
+\iiitem{(a)}When $y,\widehat{y}$ are measurements and their predictions, then
+$r=y-\widehat{y}$ is the \emph{residual/prediction error}, and
+$\rms{y-\widehat{y}}$ the \emph{RMS prediction error}.\smallskip
 
 \item{B.}\emph{Mean} and \emph{standard deviation} $\mu_x=\avg{x},\sigma_x=
 \std{x}\in\R$ of $x\in\R^m$ as $(1/m)^Tx$, ${\rm rms}(x-\mu_x1)$\smallskip
@@ -45,7 +44,7 @@ $x\in\R^m$, indicating how many std's $x_i$ lies above $\mu_x$\smallskip
 \iiitem{(b)}$\sigma_z={1\over\sigma_x}\std{x-\mu_x1}=1$ (by B1a,b)
 \smallskip
 
-\item{C.}\emph{Correlation coefficient} $\rho_{a,b}$ of $a,b\in\R^m$,
+\item{C.}\emph{Correlation coefficient} $\rho_{a,b}\in\R$ of $a,b\in\R^m$,
 measuring how the entries $a,b$ vary together\smallskip
 \iitem{1.}\emph{Definition}, for $\widetilde{a}=a-\mu_a1$, $\widetilde{b}=
 b-\mu_b1$: ${\widetilde{a}^T\widetilde{b}\over\|\widetilde{a}\|

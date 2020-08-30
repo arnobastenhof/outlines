@@ -96,7 +96,8 @@ $x_{\cal B}^*\leftarrow b$, $y_{\cal N}^*\leftarrow-c_{\cal N}$\ }&\cr
 [-\bar{a}_{ij}]_{1\leq j\leq n})$&\cr
 \noalign{\hrule height 0.6pt}
 &5. Leaving (entering) variable&Pick $l={\cal B}(i)$ maximizing ${\Delta x_i
-\over x^*_i}$&Pick $k={\cal N}(j)$ maximizing ${\Delta y_j\over y^*_j}$&\cr
+\over x^*_i}$ (*)&Pick $k={\cal N}(j)$ maximizing ${\Delta y_j\over y^*_j}$ (*)&
+\cr
 \noalign{\hrule height 0.6pt}
 &6. Primal (dual) step length&$t\leftarrow x_i^*/\Delta x_i$&$s\leftarrow
 y^*_j/\Delta y_j$&\cr
@@ -118,6 +119,8 @@ x^*_i/\Delta x_i$&\cr
 &12. Update basis&\multirow{2}{${\cal B}(i)\leftarrow k$, ${\cal N}(j)\leftarrow
 l$, $B\leftarrow A({\cal B})$, $N\leftarrow A({\cal N})$}
 &\cr\noalign{\hrule height 0.6pt}
-}}
+}}\smallskip
+\noindent* $\alpha/0=0$ if $\alpha=0$ else $+{\rm Inf}$ if $\alpha>0$ else
+$-{\rm Inf}$
 
 \vfill\eject
