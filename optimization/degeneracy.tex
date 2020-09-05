@@ -1,0 +1,116 @@
+\beginsection Degeneracy, Cycling and Termination
+
+\item{A.}\emph{Degeneracy}\smallskip
+\iitem{1.}Primal-/dual \emph{degenerate tableau}: iff $\bigvee_{1\leq i\
+leq m}\bar{b}_i=0$, resp. $\bigvee_{1\leq j\leq n}\bar{c}_j=0$\smallskip
+\iitem{2.}Primal-/dual \emph{degenerate pivot} $\bar{a}_{lk}$: iff $\bar{b}_l=0$
+resp. $\bar{c}_k=0$\smallskip
+\iiitem{(a)}Degenerate pivots leave the objective function value for the basic
+solution unchanged\smallskip
+\iiitem{(b)}Nondegenerate pivots strictly improve the objective function value
+for the basic solution\smallskip
+
+\item{B.}\emph{(Non)termination} of the (primal/dual) simplex method\smallskip
+\iitem{1.}Tableaux are in bijective correspondence with the ${n+m\choose m}$
+possible choices of ${\cal B}$, ${\cal N}$\smallskip
+\iitem{2.}The simplex method always \emph{terminates} if no degenerate pivots
+are made\smallskip
+\iitem{3.}The simplex method is said to \emph{cycle} iff the same tableau
+reappears after some no. of pivots\smallskip
+\iiitem{(a)}All pivots within a cycle must be degenerate as the objective
+function value doesn't improve\smallskip
+\iiitem{(b)}Degeneracy is common but cycling isn't, esp. w. floating point
+arithm. due to roundoff errors\smallskip
+% \iiitem{(b)}Uncommon with floating point arithmetic due to roundoff errors
+% \smallskip
+\iitem{4.}The simplex method \emph{fails to terminate} iff it cycles\smallskip
+\iitem{5.}The possibility of cycling depends on the choice of \emph{pivot rule}
+(picking entering and leaving vars)
+\smallskip
+
+\item{C.}\emph{Perturbation method/lexicographic rule}: pivot rule that avoids
+cycling, guaranteeing termination\smallskip
+\iitem{1.}\emph{Motivation}\smallskip
+\iiitem{(a)}Cycling may occur w. the \emph{largest coefficient rule} when the
+choice of pivot entry is ambiguous\smallskip
+\iiitem{(b)}Resolve ambiguities by introducing small independent random
+perturbations $\epsilon_i$ to $b_i$\smallskip
+\iitem{2.}\emph{Implementation}\smallskip
+\iiitem{(a)}Introduce (symbolic) $0\ll\epsilon_1\ll\ldots\ll\epsilon_m\ll$ all
+other data\smallskip
+\iiiitem{I.}No lin comb of $\epsilon_k,\ldots,\epsilon_m$ can cancel
+a lin comb of $\epsilon_1,\ldots,\epsilon_{k-1}$ and other data
+($0<k\leq m$)\smallskip
+\iiitem{(b)}Replace constraints with $\sum_{j=1}^na_{ij}x_j\leq b_i+\epsilon_i$
+and set starting tableau\smallskip
+\iiitem{}\vbox{\offinterlineskip
+% ===== Preamble =====
+\halign{
+\vrule                % Vertical line
+height2.75ex          % Add extra whitespace on top of rows
+depth1.25ex           % Add extra whitespace at bottom of rows
+width0.6pt#&          % Make the line a little thicker compared to normal
+\enskip\hfil #\hfil\enskip&                        % Column 1
+\enskip\hfil #\hfil\enskip&                        % Column 2
+\enskip\hfil #\hfil\enskip&                        % Column 3
+\enskip\hfil #\hfil\enskip&                        % Column 4
+\enskip\hfil #\hfil\enskip&                        % Column 5
+\enskip\hfil #\hfil\enskip&                        % Column 6
+\enskip\hfil #\hfil\enskip\vrule&                  % Column 7
+\enskip #\hfil\enskip&#\vrule width 0.6pt\cr       % Column 8
+\noalign{\hrule height 0.6pt}
+% ==== Rows ====
+% Row 1
+&$x_1$&$\cdots$&$x_n$&$1$&$\epsilon_1$&&$\epsilon_m$&&\cr
+\noalign{\hrule}
+% Row 2
+&$-a_{11}$&$\cdots$&$-a_{1n}$&$b_1$&$1$&&&$=x_{n+1}$
+&\cr
+% Row 3
+\omit\vrule width0.6pt&$\vdots$&$\ddots$&$\vdots$&$\vdots$&&$\ddots$&&$\vdots$&
+\cr
+% Row 4
+&$-a_{m1}$&$\cdots$&$-a_{mn}$&$b_m$&&&$1$&$=x_{n+m}$
+&\cr
+% Row 5
+&$c_1$&$\cdots$&$c_n$&$0$&$0$&$\ldots$&$0$&$=u$&\cr
+\noalign{\hrule height 0.6pt}
+}}\smallskip
+\iiitem{(c)}Apply simplex method with the largest coefficient rule, comparing
+ratios $\left(\bar{b}_l+\sum_{j=1}^mr_{lj}\epsilon_j\right)/\bar{a}_{lk}$ to
+determine the leaving variable\smallskip
+\iitem{3.}\emph{Termination proof}\smallskip
+\iiitem{(a)}The $\epsilon$-terms form a system of linear combinations\smallskip
+\iiiitem{I.}After any no. of pivots, say, $r_{i1}\epsilon_1+\cdots+r_{im}\epsilon_m$ ($1\leq i\leq m$)\smallskip
+\iiiitem{II.}Initially, $r_{ij}=1$ if $i=j$ else $0$\smallskip
+\iiitem{(b)}The initial system has rank $m$, which never changes due to pivot
+operations being reversible\smallskip
+\iiitem{(c)}By (b), $\bigwedge_{i=1}^m\bigvee_{j=1}^m r_{ij}\not=0$, implying
+$\bar{b}_i+\sum_{j=1}^mr_{ij}\epsilon_j\not=0$; i.e., no degeneracies ever
+occur\smallskip
+
+
+% \item{C.}\emph{Pivot rules} (i.e., how the entering- and leaving variables are
+% chosen)\smallskip
+% \iitem{1.}Cycling can occur with the \emph{largest coefficient rule} when the
+% choice of pivot entry is ambiguous\smallskip
+% \iitem{2.}$\exists$ pivot rules that never cycle, guaranteeing termination
+% (e.g., the \emph{lexicographic-} or \emph{Bland's rule})\smallskip
+
+\item{D.}Termination of the simplex method as a theoretical device for proving
+theorems\smallskip
+
+\iitem{1.}\emph{Fundamental Thm of Linear Programming}: $\forall$ LP problem
+in (primal/dual) standard form,\smallskip
+\iiitem{(a)}If there is no optimal solution, then the program is unbounded or
+infeasible\smallskip
+\iiitem{(b)}If a feasible solution exists, then a basic feasible solution exists
+\smallskip
+\iiitem{(c)}If an optimal solution exists, then a basic optimal solution exists
+\smallskip
+
+\iitem{2.}\emph{Strong duality theorem}: $\forall$ optimal soln $(x_1^*,\ldots,
+x_n^*)$ for the primal, $\exists$ optimal $(y_{n+1}^*,\ldots,y_{n+m}^*)$ for the
+dual s.t. $u=\sum_{j=1}^nc_jx_j^*=\sum_{i=1}^mb_iy_{n+i}^*=v$\smallskip
+
+\vfill\eject
