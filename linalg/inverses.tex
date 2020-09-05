@@ -1,0 +1,69 @@
+\beginsection Matrix (Pseudo-)Inverses
+
+\item{A.}\emph{Left inverse} of $A\in\R^{m\times n}$: any $C\in\R^{n\times m}$
+s.t. $CA=I_n$\smallskip
+\iitem{1.}\emph{Existence}: iff $a_1,\ldots,a_n$ are linearly independent (only if
+$m\geq n$)\smallskip
+\iiitem{(a)}\emph{Proof}: For $\Rightarrow$, note $A\beta=0$ implies
+$\beta=CA\beta=C0=0$. See D1 for $\Leftarrow$\smallskip
+\iitem{2.}\emph{Non-uniqueness}: $(\forall a\in\R^m; 1\leq i\leq m)
+(a_i\not=0\rightarrow(a_i^{-1}e_i^T)a=1)$\smallskip
+\iitem{3.}$Ax=b$ has $\leq 1$ solution (for any $b$)\smallskip
+\iiitem{(a)}\emph{Proof}: $Ax=b$ is consistent $\rightarrow$ $x=CAx=Cb$, while
+$Ax=b$ is inconsistent $\leftrightarrow$ $A(Cb)\not=b$\smallskip
+
+\item{B.}\emph{Right inverse} of $A\in\R^{m\times n}$: any $B\in\R^{n\times m}$
+s.t. $AB=I_m$\smallskip
+\iitem{1.}\emph{Existence}: iff $a_1^T,\ldots,a_m^T$ are linearly independent
+(only if $m\leq n$)\smallskip
+\iiitem{(a)}\emph{Proof}: as $B^T$ is a left-inverse of $A^T$\smallskip
+\iitem{2.}\emph{Non-uniqueness}: $(\forall a\in\R; 1\leq i\leq m)
+(a_i\not=0\rightarrow a^T(a_i^{-1}e_i)=1)$\smallskip
+\iitem{3.}$Ax=b$ has $\geq 1$ solution (for any $b$)\smallskip
+\iiitem{(a)}\emph{Proof}: $A(Bb)=b$, so $x=Bb$ is a solution\smallskip
+
+\item{C.}$A\in\R^{m\times m}$ is \emph{invertible/nonsingular} (by def) iff
+it has \emph{inverse} $D\in\R^{m\times m}$; i.e., s.t. $AD=DA=I_m$\smallskip
+\iitem{1.}\emph{Uniqueness} of $D$: $\forall$ left-, resp. right inverses $C,B$:
+$C=CAB=B$\smallskip
+\iitem{2.}\emph{Invertibility conditions}: $A^{-1}=D$ \emph{exists} $\ldots$
+\smallskip
+\iiitem{(a)}$\ldots$ iff the columns $a_1,\ldots,a_m$ are linearly independent
+\smallskip
+\iiitem{(b)}iff $A$ has right-inverse $B$\smallskip
+\iiiitem{I.}(a) implies $a_1,\ldots,a_m$ form a basis, so $(\exists !b_1,\ldots,
+b_m\in\R^m)\left(\bigwedge_{i=1}^mAb_i=e_i\right)$\smallskip
+\iiitem{(c)}iff the rows $a_1^T,\ldots,a_m^T$ are linearly independent
+\smallskip
+\iiitem{(d)}iff $A$ has left-inverse $C$\smallskip
+\iiiitem{I.}(d) $\rightarrow$ (a) $\rightarrow$ (b), so $A^{-1}$ exists by C1
+\smallskip
+\iitem{3.}$Ax=b$ has the unique solution $x=A^{-1}b$ for any $b$\smallskip
+\iitem{4.}\emph{Algebraic identities}\smallskip
+\settabs\+\iitem{}&(a) $(A^T)^{-1}=(A^{-1})^T$\qquad&\cr
+\+&(a) $(A^{-1})^{-1}=A$&(c) $(AB)^{-1}=B^{-1}A^{-1}$\cr\smallskip
+\+&(b) $(A^T)^{-1}=(A^{-1})^T$&(d) $(A^k)^{-1}=(A^{-1})^k$\cr\smallskip
+\iitem{5.}\emph{Examples}:\smallskip
+\iiitem{(a)}$(\forall\alpha_1,\ldots,\alpha_m\not=0)(\rm{diag}(\alpha_1,\ldots,
+\alpha_m)^{-1}={\rm diag}(\alpha_1^{-1},\ldots,\alpha_m^{-1}))$\smallskip
+\iiitem{(b)}$(\forall A\in\R^{2\times 2})\left(a_{11},a_{22}\not=a_{12}a_{21}
+\rightarrow A^{-1}={1\over a_{11}a_{22}-a_{12}a_{21}}\left[\matrix{a_{22}&
+-a_{12}\cr-a_{21}&a_{11}}\right]\right)$\smallskip
+\iiitem{(c)}Any (upper/lower) triangular $A\in\R^{m\times m}$ with nonzero
+diagonal elements is invertible\smallskip
+
+\item{D.}(Left- and right) \emph{pseudo-inverse}(s) $A^{\dagger}\in
+\R^{n\times m}$ of $A\in\R^{m\times n}$:\smallskip
+\iitem{1.}If $a_1,\ldots,a_n$ are lin indep, then $A^TA\in\R^{n\times n}$ is
+invertible and $A^{\dagger}=(A^TA)^{-1}A$ a left inverse of $A$\smallskip
+\iiitem{(a)}\emph{Proof} of invertibility: $(A^TA)x=0\rightarrow 0=x^T0=x^TA^TAx
+=\|Ax\|^2\rightarrow Ax=0\rightarrow x=0$\smallskip
+\iitem{2.}If $a_1^T,\ldots,a_m^T$ are lin indep, $AA^T\in\R^{m\times m}$ is
+invertible and $A^{\dagger}=A^T(AA^T)^{-1}$ a right inverse of $A$\smallskip
+\iiitem{(a)}\emph{Proof} of invertibility: $A^T$ has lin indep cols, so
+$(A^T)^T(A^T)=AA^T$ is invertible\smallskip
+\iitem{3.}If $A$ is invertible, then $A^{\dagger}=A^{-1}$\smallskip
+\iiitem{(a)}\emph{Proof}: $A^{-1}$ exists $\rightarrow$ $(A^TA)^{-1}A^T=A^{-1}
+(A^T)^{-1}A^T=A^{-1}=A^T(A^T)^{-1}A^{-1}=A^T(AA^T)^{-1}$\smallskip
+
+\vfill\eject
