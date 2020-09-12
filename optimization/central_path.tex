@@ -1,0 +1,82 @@
+\beginsection The Central Path
+
+\item{A.}\emph{Unconstrained optimization}: max $f(x)$, where $f:\R^n\rightarrow
+\R$ is twice differentiable\smallskip
+\iitem{1.}\emph{Local maximum (minimum)} at $x_0$: iff $\exists r>0$, $\forall
+x$ s.t. $\|x-x_0\|<r$, $f(x)\leq f(x_0)$ ($f(x)\geq f(x_0)$)\smallskip
+\iitem{2.}\emph{Stationary point}: any $x$ s.t. $\nabla f(x)=0$\smallskip
+\iitem{3.}\emph{First derivative test}: any local optimum is a stationary
+point\smallskip
+\iiitem{I.}\emph{Intuition}: $\nabla f(x)$ points in the direction of most
+rapid increase of $f$\smallskip
+\iitem{4.}\emph{Second derivative test}: $f$ has a local max (min) at a
+stationary point $x$ if the Hessian of $f$ at $x$ is negative (positive)
+semidefinite\smallskip
+
+\item{B.}\emph{Inequality-constrained optimization}: max $f(x)$ s.t. $x\geq 0$
+($f:\R^n\rightarrow R$ continuous)\smallskip
+\iitem{1.}\emph{Logarithmic barrier function} $\sum_{j=1}^n\log(x_j)$: penalty
+term added to $f$ replacing ``$x\geq 0$''\smallskip
+\iiitem{(a)}\emph{Domain}: the strictly feasible points $x>0$\smallskip
+\iiitem{(b)}Tends to $-\infty$ as $x$ approaches the boundary of the feasible
+region (i.e., goes to $0$)\smallskip
+\iiitem{(c)}Increases less as $x$ moves away from the boundary\smallskip
+\iitem{2.}\emph{Barrier problem} (for any $\mu\in\R^+$): max $f(x)+\mu
+\sum_{j=1}^n\log(x_j)$\smallskip
+\iiitem{(a)}Continuous, as opposed to max $f(x)+(-\infty\ {\rm if}\ x<0\ {\rm
+else}\ 0)$\smallskip
+\iiitem{(b)}Becomes a better approximation to the original problem as $\mu
+\rightarrow 0$\smallskip
+
+\item{C.}\emph{Equality-constrained optimization}: max $f(x)$ s.t. $g(x)=0$
+($f:\R^n\rightarrow\R$, $g:\R^n\rightarrow\R^m$)\smallskip
+\iitem{1.}\emph{Lagrange function} (with \emph{Lagrange multipliers} $y$):
+$L(x,y)=f(x)-\sum_{i=1}^my_ig_i(x)$\smallskip
+\iitem{2.}\emph{First-order optimality conditions}: $\forall$ soln's $x$,
+$\exists y$ s.t. $x,y$ are a stationary point of $L(x,y)$, iff\smallskip
+\iiitem{(a)}${\partial L\over\partial x_j}={\partial f\over\partial x_j}-
+\sum_{i=1}^my_i{\partial g_i\over\partial x_j}=0$, $\forall 1\leq j\leq n$
+(i.e., $\nabla f(x)=\sum_{i=1}^my_i\nabla g(x)$); and\smallskip
+\iiiitem{I.}\emph{Intuition}: the soln must be orthogonal to the feasible set, iff
+it lies in the span of $\nabla g_i(x)$\smallskip
+\iiitem{(b)}${\partial L\over\partial y_i}=-g_i(x)=0$, $\forall 1\leq i\leq m$
+(i.e., $g(x)=0$)\smallskip
+\iitem{3.}If the Hessian of $f$ is negative definite at all $x$ and the
+constraints are linear, then any stationary point of $L(x,y)$ must be the unique
+global max, if it exists\smallskip
+
+\item{D.}\emph{Application to LP problems}\smallskip
+\iitem{1.}\emph{Primal problem} in canonical form (using \emph{slacks} $w$):
+max $c^Tx$ s.t. $Ax+w=b$ and $w,x\geq 0$\smallskip
+\iitem{2.}\emph{Barrier problem} ($\mu\in\R^+$): max $u=c^Tx+\mu\sum_{j=1}^n
+\log x_j+\mu\sum_{i=1}^m\log w_i$ s.t. $Ax+w=b$\smallskip
+\iitem{3.}\emph{Lagrangian}: $L(x,w,y)=c^Tx+\mu\sum_{j=1}^n\log x_j+\mu
+\sum_{i=1}^m\log w_i+y^T(b-Ax-w)$\smallskip
+\iiitem{(a)}\emph{First-order optimality conditions}, letting $z_j=\mu{1\over
+x_j}$ (dual slacks):\smallskip
+\iiiitem{I.}\emph{Dual feasibility}: ${\partial L\over\partial x_j}=c_j+
+\mu{1\over x_j}-\sum_{i=1}^my_ia_{ij}=0$, iff $\sum_{i=1}^ma_{ij}y_i-z_j=c_j$
+\smallskip
+\iiiitem{II.}\emph{Primal feasibility}: ${\partial L\over\partial y_i}=b_i-
+\sum_{j=1}^na_{ij}x_j-w_i=0$, iff $\sum_{j=1}^na_{ij}x_j+w_i=b_i$\smallskip
+\iiiitem{III.}\emph{$\mu$-complementarity conditions}: ${\partial L\over\partial
+w_i}=\mu{1\over w_i}-y_i=0$, iff $y_iw_i=\mu$ (also $x_jz_j=\mu$)\smallskip
+\iitem{4.}\emph{Hessian} $H_f$ of $u$ at arb. $x,w>0$\smallskip
+\iiitem{(a)}\emph{First-order derivatives}: ${\partial u\over\partial x_j}=
+c_j+{\mu\over x_j}$; and ${\partial u\over\partial w_i}={\mu\over w_i}$
+\smallskip
+\iiitem{(b)}\emph{Second-order derivatives}: ${\partial^2u\over\partial x_j^2}=
+-{\mu\over x_j^2}$; ${\partial^2u\over\partial x_j^2}=-{\mu\over w_i^2}$; and
+${\partial^2u\over\partial x_j\partial w_i}={\partial^2u\over\partial w_i
+\partial x_j}=0$\smallskip
+\iiitem{(c)}I.e., $H_f(x,w)$ is diagonal with strictly negative diagonal
+entries, hence \emph{negative definite}\smallskip
+
+\item{E.}\emph{Central Path}\smallskip
+\iitem{1.}\emph{Uniqueness} of solutions to D2 and D3a: by C3 and D4c\smallskip
+\iitem{2.}\emph{Existence} of solutions to D2: iff the primal (dual) feasible
+set has nonempty interior and is bounded\smallskip
+\iitem{2.}\emph{Primal-dual central path}: the unique soln's $(x_{\mu},w_{\mu},
+y_{\mu},z_{\mu})$ to D3a for all $\mu>0$\smallskip
+
+\vfill\eject

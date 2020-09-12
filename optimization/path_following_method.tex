@@ -1,0 +1,83 @@
+\beginsection A Path-Following Method
+
+\item{A.}\emph{Newton's method} for approximating roots $\xi^*$ of given
+differentiable $F:\R^n\rightarrow\R^n$\smallskip
+\iitem{1.}\emph{Goal}: to find, for any given $\xi\in\R^n$, a \emph{step
+direction} $\Delta\xi$ s.t. $F(\xi+\Delta\xi)=0$\smallskip
+\iitem{2.}\emph{Complication}: $\Delta\xi$ in general may not exist for
+nonlinear $F$\smallskip
+\iitem{3.}\emph{Solution}: approximate $\Delta\xi$ using the 2$^{\rm nd}$-order
+Taylor series expansion $F(\xi+\Delta\xi)\approx F(\xi)+F'(\xi)\Delta\xi$
+\smallskip
+% \iiitem{(a)}Solve the linear system $F'(\xi)\Delta\xi=-F(\xi)$ for $\Delta\xi$
+% \smallskip
+% \iiitem{(b)}Update $\xi\leftarrow\xi+\Delta\xi$\smallskip
+% \iiitem{(c)}Repeat until $F(\xi)\approx 0$\smallskip
+\iiitem{(a)}Solve the linear system $F'(\xi)\Delta\xi=-F(\xi)$ for $\Delta\xi$,
+update $\xi\leftarrow\xi+\Delta\xi$ and repeat until $F(\xi)\approx 0$\smallskip
+\iitem{4.}\emph{Caveat}: may not converge, depending on the initial $\xi$
+and behavior of $F$\smallskip
+
+\item{B.}\emph{Path-Following Algorithm}: iterative method producing a
+sequence of solutions to an LP problem\smallskip
+\iitem{1.}\emph{Starting point}: any $(x,w,y,z)>0$, not necessarily primal- or
+dual feasible\smallskip
+\iiitem{(a)}Iteratively updated to converge towards $(x_{\mu},w_{\mu},y_{\mu},
+z_{\mu})$ for increasingly smaller estimates of $\mu$\smallskip
+\iiitem{(b)}$>0$ maintained as an \emph{invariant} throughout to stay within the
+domain of the barrier problem\smallskip
+\iiitem{(c)}Optimality may require many vars to vanish, so obtained only in the
+limit\smallskip
+\iitem{3.}\emph{Initialize measures of progress}, expected to converge towards
+$0$ if an optimal solution exists\smallskip
+\iiitem{(a)}\emph{Primal infeasibility}: $\rho\leftarrow b-Ax-w$\smallskip
+\iiitem{(b)}\emph{Dual infeasibility}: $\sigma\leftarrow c-A^Ty+z$\smallskip
+\iiitem{(c)}\emph{(In)complementarity}: $\gamma\leftarrow z^Tx+y^Tw$\smallskip
+\iitem{2.}\emph{Estimate the barrier parameter} $\mu$ ($\delta\in(0, 1)$ an
+input setting): $\mu\leftarrow\delta{z^Tx+y^Tw\over n+m}$\smallskip
+\iiitem{(a)}\emph{Rationale}: if $(x,w,y,z)$ {\sl is} on the central path, then
+$\mu=z_jx_j=y_iw_i={z^Tx+y^Tw\over n+m}$, $\forall i,j$\smallskip
+\iitem{3.}\emph{Compute step directions} $\Delta x$, $\Delta w$, $\Delta y$,
+$\Delta z$ pointing approximately to $(x_{\mu},w_{\mu},y_{\mu},z_{\mu})$
+\smallskip
+\iiitem{(a)}Solve $F'(\xi)\Delta\xi=-F(\xi)$, the roots $\xi_{\mu}$ of $F(\mu)$
+being soln's to the 1$^{\rm st}$-order optimality conditions
+$$
+F(\xi)=\left[\matrix{Ax+w-b\cr A^Ty-z-c\cr XZ1-\mu1\cr YW1-\mu1}\right],\quad
+F'(\xi)=\left[\matrix{A&I&0&0\cr 0&0&A^T&-I\cr Z&0&0&X\cr 0&Y&W&0}\right],\quad
+\xi_{\mu}=\left[\matrix{x_{\mu}\cr w_{\mu}\cr y_{\mu}\cr z_{\mu}}\right],\quad
+\matrix{X={\rm diag}(x),\cr W={\rm diag}(w),\cr Y={\rm diag}(y),\cr Z={\rm diag}
+(z).}
+$$
+\iiitem{(b)}I.e., solve the following linear system:\smallskip
+\iiiitem{I.}$A\Delta x+\Delta w=b-Ax-w=:\rho$ ($\rho$ the \emph{primal
+infeasibility})\smallskip
+\iiiitem{II.}$A^T\Delta y-\Delta z=c-A^Ty+z=:\sigma$ ($\sigma$ the \emph{dual
+infeasibility})\smallskip
+\iiiitem{III.}$Z\Delta x+X\Delta z=\mu1-XZ$ (iff $z_j\Delta x_j+x_j\Delta z_j=
+\mu-x_jz_j$, $\forall j$)\smallskip
+\iiiitem{IV.}$W\Delta y+Y\Delta w=\mu1-YW1$ (iff $w_i\Delta y_i+y_i\Delta w_i=
+\mu-y_iw_i$, $\forall i$)\smallskip
+\iitem{4.}\emph{Choose step length parameter} $\theta\in(0,1)$\smallskip
+\iiitem{(a)}\emph{Motivation}: possibly $\xi+\Delta\xi\not>0$ for $\xi=\left[
+\matrix{x^T&w^T&y^T&z^T}\right]^T$, requiring a step length $<1$\smallskip
+\iiitem{(b)}Choose $\theta\leftarrow\min\left(1,\left(\max-{\Delta\xi\over\xi}
+\right)^{-1}\right)$ for $r$ close to but strictly smaller than $1$\smallskip
+\iiiitem{I.}$\xi+\left(\max-{\Delta\xi\over\xi}\right)^{-1}\Delta\xi
+\geq 0$, so $\xi+r\left(\max-{\Delta\xi\over\xi}\right)^{-1}\Delta\xi>0$
+\smallskip
+\iitem{5.}\emph{Update solution}: $x\leftarrow x+\theta\Delta x$,
+$w\leftarrow w+\theta\Delta w$, $y\leftarrow y+\theta\Delta y$, $z\leftarrow z+
+\theta\Delta z$\smallskip
+\iitem{6.}\emph{Update measures of progress}: $\rho\leftarrow(1-\theta)\rho$,
+$\sigma\leftarrow(1-\theta)\sigma$, $\gamma\leftarrow z^Tx+y^Tw$\smallskip
+\iitem{7.}\emph{Test stopping conditions}, for $\epsilon>0$ a small positive
+tolerance and $M<\infty$ a large finite tolerance\smallskip
+\iiitem{(a)}\emph{Primal unbounded} if $\|x\|_{\infty}>M$\smallskip
+\iiitem{(b)}\emph{Dual unbounded} if $\|y\|_{\infty}>M$\smallskip
+\iiitem{(c)}\emph{Optimal} if $\|\rho\|_1<\epsilon$, $\|\sigma\|_1<\epsilon$ and
+$\gamma<\epsilon$\smallskip
+\iiitem{(d)}Else, if max no. of iterations not exceeded (another input param),
+go to B3\smallskip
+
+\vfill\eject
