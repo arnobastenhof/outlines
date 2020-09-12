@@ -50,6 +50,11 @@ s.t. $\sum_{i=1}^ma_{ij}y_{n+i}\geq c_j$, $y_{n+i}\geq 0$ ($1\leq j\leq n$, $1\l
 s.t. $\sum_{i=1}^m-a_{ij}y_{n+i}\leq-c_j$, $y_{n+i}\geq 0$\smallskip
 \iiiitem{II.}Dual of the dual: $-{\rm min}\sum_{j=1}^n(-c_j)x_j$ s.t.
 $\sum_{j=1}^n(-a_{ij})x_j\geq(-b_i)$, $x_j\geq 0$\smallskip
+\iitem{4.}Transformation to \emph{canonical form}\smallskip
+\iiitem{(a)}\emph{Primal Problem}: Introduce \emph{primal slack( variable)s}
+$w_i=x_{n+i}=b_i-\sum_{j=1}^na_{ij}x_j\geq 0$\smallskip
+\iiitem{(b)}\emph{Dual Problem}: Introduce \emph{dual slack( variable)s}
+$z_j=y_j=\sum_{i=1}^ma_{ij}y_{n+i}-c_j\geq 0$\smallskip
 
 \item{C.}\emph{Solutions}: \'any choice of \emph{decision variables} $x_j$
 ($y_{n+i}$)\smallskip
@@ -76,9 +81,9 @@ a_{ij}y_{n+i}\right)x_j=\sum_{i=1}^m\left(\sum_{j=1}^na_{ij}x_j\right)y_{n+i}\le
 y_m)$ s.t. $u=v$ are optimal\smallskip
 \iiitem{(b)}If the primal (dual) is unbounded, then the dual (primal) is
 infeasible\smallskip
-\iiiitem{I.}Counterexample to $\Leftarrow$: infeasibility of both the primal
+\iiiitem{I.}Counterexample to $\Leftarrow$: infeasibility of primal
 `max $2x_1-x_2$ s.t. $x_1-x_2\leq 1$, $-x_1+x_2\leq -2$, $x_1,x_2\geq 0$' and
-the dual `min $y_3-2y_4$ s.t. $y_3-y_4\geq 2$, $-y_3+y_4\geq -1$, $y_3,y_4\geq
+dual `min $y_3-2y_4$ s.t. $y_3-y_4\geq 2$, $-y_3+y_4\geq -1$, $y_3,y_4\geq
 0$'\smallskip
 
 \vfill\eject

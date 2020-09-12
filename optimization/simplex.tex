@@ -1,12 +1,6 @@
 \beginsection The Simplex Method in Component Notation
 
-\item{A.}Transformation to \emph{canonical form}\smallskip
-\iitem{1.}\emph{Primal Problem}: Introduce \emph{primal slack( variable)s}
-$x_{n+i}=b_i-\sum_{j=1}^na_{ij}x_j\geq 0$ ($1\leq i\leq m)$\smallskip
-\iitem{2.}\emph{Dual Problem}: Introduce \emph{dual slack( variable)s}
-$y_{j}=\sum_{i=1}^ma_{ij}y_{n+i}-c_j\geq 0$ ($1\leq j\leq n)$\smallskip
-
-\item{B.}\emph{Data representation}\smallskip
+\item{A.}\emph{Data representation}\smallskip
 \iitem{1.}A \emph{permutation} $P$ of $\{1,\ldots,n+m\}$\smallskip
 \iiitem{(a)}\emph{Basic (dependent) variables}: ${\cal B}_{\rm primal}=\{
 x_{P(n+i)}\}_{1\leq i\leq m}$, ${\cal B}_{\rm dual}=\{ y_{P(j)}\}_{1\leq j\leq
@@ -64,7 +58,7 @@ basic solutions are\smallskip
 \iiitem{(e)}A teableau is \emph{optimal} iff primal- \'and dual feasible
 \smallskip
 
-\item{C.}\emph{Pivoting} on the $(l,k)^{\rm th}$ entry (the \emph{pivot}) of an
+\item{B.}\emph{Pivoting} on the $(l,k)^{\rm th}$ entry (the \emph{pivot}) of an
 $m+1$-by-$n+1$ tableau $Z$ ($1\leq l\leq m$, $1\leq k\leq n$)\smallskip
 \iitem{1.}\emph{Update tableau}\smallskip
 \settabs\+\iitem{}&(a) $z_{ij}\leftarrow z_{ij}-z_{ik}z_{lk}^{-1}z_{lj}$
@@ -76,7 +70,7 @@ $m+1$-by-$n+1$ tableau $Z$ ($1\leq l\leq m$, $1\leq k\leq n$)\smallskip
 \iitem{2.}\emph{Update basic- and nonbasic variables}: swap $P(k)$ and
 $P(n+l)$\smallskip
 
-\item{D.}\emph{Primal simplex method} for primal feasible tableau\smallskip
+\item{C.}\emph{Primal simplex method} for primal feasible tableau\smallskip
 \iitem{1.}If $\forall 1\leq j\leq n,\bar{c}_j\leq 0$, stop (tableau is optimal)
 \smallskip
 \iitem{2.}Select an \emph{entering variable} $x_{P(k)}$ s.t. $\bar{c}_k>0$
@@ -94,9 +88,9 @@ i\leq m}$\smallskip
 iff $x_{P(k)}\leq\bar{b}_i/\bar{a}_{ik}$, so $\bar{b}_l/\bar{a}_{lk}$ largest
 assignable value to $x_{P(k)}$ preserving primal feasibility\smallskip
 \iitem{5.}Pivot on $-\bar{a}_{lk}$, noting the resulting tableau remains
-primal feasible, and go to D1\smallskip
+primal feasible, and go to C1\smallskip
 
-\item{E.}\emph{Dual simplex method} for dual feasible tableau\smallskip
+\item{D.}\emph{Dual simplex method} for dual feasible tableau\smallskip
 \iitem{1.}If $\forall 1\leq i\leq m,\bar{b}_i\geq 0$, stop (tableau is optimal)
 \smallskip
 \iitem{2.}Select as a \emph{leaving variable} any $x_{P(n+l)}$ s.t. $l\in
@@ -107,6 +101,6 @@ infeasible, dual problem unbounded)\smallskip
 \bar{a}_{lk}$ is a min of $\{\bar{c}_j/\bar{a}_{lj}\ |\ \bar{a}_{lj}<0\}_{1\leq
 j\leq n}$\smallskip
 \iitem{5.}Pivot on $-\bar{a}_{lk}$, noting the resulting tableau remains
-dual feasible, and go to E1\smallskip
+dual feasible, and go to D1\smallskip
 
 \vfill\eject
